@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     marginVertical: 10
   },
   icon: {
-    paddingRight: -5
+    paddingRight: 0
   },
   inputContainer: {
     flexDirection: 'row',
