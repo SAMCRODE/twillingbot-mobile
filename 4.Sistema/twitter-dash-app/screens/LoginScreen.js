@@ -38,7 +38,13 @@ const LoginScreen = props => {
           icon="key"
           secureTextEntry={true} />
           <View style={styles.button}>
-            <Button title={"Entrar"} style={styles.button}/>
+            <Button title={"Entrar"} style={styles.button} onPress={() => {
+              console.log('pressed');
+
+              props.navigation.navigate({
+                routeName: 'Begin'
+              });
+            }}/>
           </View>
         </View>
         

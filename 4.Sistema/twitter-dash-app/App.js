@@ -11,9 +11,9 @@ enableScreens();//Make sure all UI use native resources
 
 export default function App() {
   return (
-    <View style={styles.screen}>
+    <SafeAreaView style={styles.screen}>
         <TdaNavigation />
-    </View>
+    </SafeAreaView>
   );
 }
 
