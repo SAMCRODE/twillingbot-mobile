@@ -5,7 +5,7 @@ import {
 View } from 'react-native';
 import { enableScreens } from 'react-native-screens';
 
-import TdaNavigation from './navigation/TdaNavigation';
+import TdaNavigation from './src/navigation/TdaNavigation';
 
 enableScreens();//Make sure all UI use native resources
 

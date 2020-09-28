@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-
+import styles from './styles';
 const BotsSelectScreen = props => {
   return (
     <View style={styles.screen}>
@@ -8,13 +8,4 @@ const BotsSelectScreen = props => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-});
-
 export default BotsSelectScreen;

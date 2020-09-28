@@ -6,10 +6,10 @@ import { createAppContainer } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
-import BotsSelectScreen from '../screens/BotsSelectScreen';
-import FollowScreen from '../screens/FollowScreen';
-import LoginScreen from '../screens/LoginScreen';
-import TweetScreen from '../screens/TweetScreen';
+import BotsSelectScreen from '../screens/BotsList/BotsSelectScreen';
+import FollowScreen from '../screens/Follow/FollowScreen';
+import LoginScreen from '../screens/Login/LoginScreen';
+import TweetScreen from '../screens/Tweet/TweetScreen';
 import Colors from '../constants/Colors';
 
 const TweetFollowTabNavigator = createBottomTabNavigator({
