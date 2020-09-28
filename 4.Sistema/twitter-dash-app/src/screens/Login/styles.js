@@ -1,8 +1,5 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
-import Constants from 'expo-constants';
-import { color } from 'react-native-reanimated';
-
 export default StyleSheet.create({
     screen: {
         flex: 1,
