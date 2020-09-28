@@ -1,61 +1,60 @@
 import React from 'react';
 import { View, 
-  StyleSheet, 
   Image, 
-  Dimensions, 
-  Button,
-  Text
+  Text,
+  KeyboardAvoidingView
 } from 'react-native';
 import styles from './styles';
 
-import Colors from '../../constants/Colors';
 import Input from '../../components/Input';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import logoImg from '../assets/logo.png';
+
 
 const LoginScreen = props => {
   return (
-    <View style={styles.screen}>
-      <View style={styles.container}>
-        <Image 
-          source={{
-            uri: 'https://cdn.discordapp.com/attachments/746021348232659078/758008152989106176/vdL_1_1.png'
-          }}
-          style={styles.image}
-          resizeMode="cover"
-        />
-        <View style={styles.inputContainer}>
-          <Input 
-          style={styles.input}
-          blurOnSubmit
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholder="email"
-          icon="user" />
-          <Input 
-          style={styles.input}
-          blurOnSubmit
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholder="senha"
-          icon="key"
-          secureTextEntry={true} />
-          <View style={styles.button}>
-            <Button title={"Entrar"} style={styles.button} onPress={() => {
-              console.log('pressed');
 
-              props.navigation.navigate({
-                routeName: 'Begin'
-              });
-            }}/>
+    <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style = {styles.screen}>
+
+      <View style={styles.screen}>
+        <View style={styles.container}>
+          <Image style={styles.imagem} source={logoImg}/>
+
+          <View style={styles.inputContainer}>
+            <Input 
+            style={styles.input}
+            blurOnSubmit
+            autoCapitalize="none"
+            autoCorrect={false}
+            placeholder="Email"
+            />
+            <Input 
+            style={styles.input}
+            blurOnSubmit
+            autoCapitalize="none"
+            autoCorrect={false}
+            placeholder="Senha"
+            secureTextEntry={true}
+          />
+          </View>
+
+          <View style={styles.actions}>
+        
+            <TouchableOpacity style={styles.button} onPress={() => {props.navigation.navigate({
+                routeName: 'Begin' }); } }>
+
+              <Text style={styles.buttonText}>Entrar</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={ [styles.button, {backgroundColor: '#818181'}] } onPress={()=>{}}>
+              <Text style={styles.buttonText}>Cadastrar</Text>
+            </TouchableOpacity>
+
           </View>
         </View>
-        
       </View>
-      <View style={styles.bottom}>
-        <Text style={styles.textBottom}>Não tem uma conta? Cadastre-se</Text>
-      </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
-
 
 export default LoginScreen;

@@ -2,7 +2,7 @@ import React from 'react';
 import { 
   StyleSheet,
   SafeAreaView,
-View } from 'react-native';
+} from 'react-native';
 import { enableScreens } from 'react-native-screens';
 
 import TdaNavigation from './src/navigation/TdaNavigation';
