@@ -10,6 +10,7 @@ import BotsSelectScreen from '../screens/BotsList/BotsSelectScreen';
 import FollowScreen from '../screens/Follow/FollowScreen';
 import LoginScreen from '../screens/Login/LoginScreen';
 import TweetScreen from '../screens/Tweet/TweetScreen';
+import RegisterScreen from '../screens/Register/RegisterScreen';
 import Colors from '../constants/Colors';
 
 const TweetFollowTabNavigator = createBottomTabNavigator({
@@ -45,6 +46,9 @@ const TdaNavigator = createStackNavigator({
     },
     Begin: {
         screen: TweetFollowTabNavigator
+    },
+    Register: {
+        screen: RegisterScreen
     }
 }, {
     defaultNavigationOptions: {
