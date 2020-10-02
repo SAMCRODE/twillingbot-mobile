@@ -1,4 +1,5 @@
 import {StyleSheet, Dimensions} from 'react-native';
+import Colors from '../../constants/Colors';
 
 export default StyleSheet.create({
     screen: {
@@ -25,7 +26,7 @@ export default StyleSheet.create({
         width: 195,
         height: 35,
         marginTop: 10,
-        backgroundColor: '#1DA1F2',
+        backgroundColor: Colors.accentColor,
         borderRadius: 50,
         justifyContent: "center",
         alignItems: 'center'
