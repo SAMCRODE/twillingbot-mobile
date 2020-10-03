@@ -1,4 +1,3 @@
-import { Platform } from 'react-native';
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
@@ -6,7 +5,6 @@ import { createAppContainer } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
-import BotsSelectScreen from '../screens/BotsList/BotsSelectScreen';
 import FollowScreen from '../screens/Follow/FollowScreen';
 import LoginScreen from '../screens/Login/LoginScreen';
 import TweetScreen from '../screens/Tweet/TweetScreen';
