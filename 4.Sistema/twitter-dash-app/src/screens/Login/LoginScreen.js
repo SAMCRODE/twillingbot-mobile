@@ -9,36 +9,10 @@ import styles from './styles';
 import Input from '../../components/Input';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import logoImg from '../assets/logo.png';
-import Colors from '../../constants/Colors';
-
-const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
-
-const formReducer = (state, action) => {
-  if (action.type === FORM_INPUT_UPDATE) {
-    const updatedValues = {
-      ...state.inputValues,
-      [action.input]: action.value
-    };
-    const updatedValidities = {
-      ...state.inputValidities,
-      [action.input]: action.isValid
-    };
-    let updatedFormIsValid = true;
-    // console.log(updatedValidities);
-    for (const key in updatedValidities) {
-      updatedFormIsValid = updatedFormIsValid && updatedValidities[key];
-    }
-    return {
-      formIsValid: updatedFormIsValid,
-      inputValidities: updatedValidities,
-      inputValues: updatedValues
-    };
-  }
-  return state;
-};
+import inputReducer, { FORM_INPUT_UPDATE } from '../../components/InputReducer';
 
 const LoginScreen = props => {
-  const [formState, dispatchFormState] = useReducer(formReducer, {
+  const [formState, dispatchFormState] = useReducer(inputReducer, {
     inputValues: {
       email: '',
       password: ''
@@ -110,7 +84,9 @@ const LoginScreen = props => {
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity style={ [styles.button, {backgroundColor: '#818181'}] } onPress={()=>{}}>
+            <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] } 
+            onPress={() => {props.navigation.navigate({
+                routeName: 'Register' }); } }>
               <Text style={styles.buttonText}>Cadastrar</Text>
             </TouchableOpacity>
 

@@ -79,11 +79,11 @@ const Input = props => {
       onChangeText={textChangeHandler}
       onEndEditing={lostFocusHandler}
     />
-    {/* {!inputState.isValid && inputState.touched && (
+    {!!props.showError && !inputState.isValid && inputState.touched && (
       <View style={styles.errorContainer}>
         <Text style={styles.errorText}>{props.errorText}</Text>
       </View>
-    )} */}
+    )}
   </View>);
 };
 
