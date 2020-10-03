@@ -28,10 +28,16 @@ export default StyleSheet.create({
         borderRadius: 50,
         justifyContent: "center",
         alignItems: 'center'
-
       },
       buttonText:{
         color: '#fff',
         fontWeight: 'bold'
+      },
+      errorContainer: {
+        marginVertical: 5
+      },
+      errorText: {
+        color: 'red',
+        fontSize: 13
       }
 })

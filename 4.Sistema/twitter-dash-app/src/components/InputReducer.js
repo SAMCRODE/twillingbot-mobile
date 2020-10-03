@@ -13,7 +13,6 @@ const inputReducer = (state, action) => {
     let updatedFormIsValid = true;
     // console.log(updatedValidities);
     for (const key in updatedValidities) {
-      console.log(key, updatedValidities[key]);
       updatedFormIsValid = updatedFormIsValid && updatedValidities[key];
     }
     return {

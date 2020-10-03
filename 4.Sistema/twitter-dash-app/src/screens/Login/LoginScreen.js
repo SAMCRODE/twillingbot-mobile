@@ -84,7 +84,8 @@ const LoginScreen = props => {
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] } onPress={() => {props.navigation.navigate({
+            <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] } 
+            onPress={() => {props.navigation.navigate({
                 routeName: 'Register' }); } }>
               <Text style={styles.buttonText}>Cadastrar</Text>
             </TouchableOpacity>
