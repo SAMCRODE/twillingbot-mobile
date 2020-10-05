@@ -5,6 +5,7 @@ import { createAppContainer } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
+import BotsSelectScreen from '../screens/BotsList/BotsSelectScreen';
 import FollowScreen from '../screens/Follow/FollowScreen';
 import LoginScreen from '../screens/Login/LoginScreen';
 import TweetScreen from '../screens/Tweet/TweetScreen';
@@ -47,6 +48,9 @@ const TdaNavigator = createStackNavigator({
     },
     Register: {
         screen: RegisterScreen
+    },
+    Bots: {
+        screen: BotsSelectScreen
     }
 }, {
     defaultNavigationOptions: {

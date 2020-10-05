@@ -52,7 +52,9 @@ const FollowScreen = props => {
           <View style={{opacity: formState.formIsValid ? 1.0 : 0.5}}>
             <TouchableOpacity 
             style={styles.buttonTweet} 
-            onPress={() =>{}}
+            onPress={() => {
+              props.navigation.navigate({routeName: 'Bots' }); 
+            }}
             disabled={!formState.formIsValid}>
               <Text style={styles.buttonText}>Seguir</Text>
             </TouchableOpacity>

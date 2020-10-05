@@ -26,7 +26,9 @@ const TweetScreen = props => {
       theme={{colors: {primary: '#1DA1F2', underlineColor: 'transparent'}}}
       />
       <View style={styles.actions} >
-        <TouchableOpacity style={styles.buttonTweet} onPress={() =>{}}>
+        <TouchableOpacity style={styles.buttonTweet} onPress={() => {
+                  props.navigation.navigate({routeName: 'Bots' }); 
+                }}>
           <Text style={styles.buttonText}>Tweetar</Text>
         </TouchableOpacity>
       </View>
