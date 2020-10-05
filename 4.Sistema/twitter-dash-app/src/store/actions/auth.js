@@ -16,9 +16,11 @@ export const signup = (user) => {
 
         if (!response.ok) {
             const errorResData = await response.json();
-            console.log(errorResData);
+            if(errorResData.code === Config.codes.repEmail){
+                throw new Error('Já temos uma conta cadastrada para esse email');
+            }
             
-            throw new Error(errorResData);
+            throw new Error('Algo sinistro ocorreu nos nossos servidores');
         }
 
         const resData = await response.json();

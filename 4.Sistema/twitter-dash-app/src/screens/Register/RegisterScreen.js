@@ -1,8 +1,8 @@
-import React, { useReducer, useCallback } from 'react';
+import React, { useReducer, useCallback, useState, useEffect } from 'react';
 import { View, 
   Image, 
   Text,
-  KeyboardAvoidingView
+  Alert
 } from 'react-native';
 import styles from './styles';
 
@@ -15,6 +15,8 @@ import User from '../../models/user';
 import { useDispatch } from 'react-redux';
 
 const RegisterScreen = props => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
   const [formState, dispatchFormState] = useReducer(inputReducer, {
     inputValues: {
       email: '',
@@ -43,19 +45,31 @@ const RegisterScreen = props => {
     [dispatchFormState]
   );
 
+  useEffect(() => {
+    if (error) {
+      Alert.alert('Pempp!', error, [{ text: 'Foi mau' }]);
+    }
+  }, [error]);
+
   const registerHandler = async () => {
-    console.log('registrando...');
+    if(isLoading) return;
+
     let action;
 
     action = authActions.signup(
       new User(0, formState.inputValues.email, formState.inputValues.password)
     );
+    
+    setError(null);
+    setIsLoading(true);
 
     try{
       await dispatch(action);
+      setIsLoading(false);
       props.navigation.navigate('Login');
     } catch (err) {
-      console.log(err);
+      setIsLoading(false);
+      setError(err.message);
     }
   };
 
@@ -107,14 +121,16 @@ const RegisterScreen = props => {
           </View>}
         </View>
 
-        <View style={styles.actions} style={{opacity: formState.formIsValid ? 1.0 : 0.5}}>
-      
-          <TouchableOpacity style={styles.button}
+        <View style={styles.actions}>
+          <View style={{opacity: (formState.formIsValid && !isLoading) ? 1.0 : 0.5}}>
+            <TouchableOpacity 
+            style={styles.button}
             onPress={registerHandler}
-          >
-
-            <Text style={styles.buttonText}>Cadastrar</Text>
-          </TouchableOpacity>
+            disabled={!formState.formIsValid && !isLoading}
+            >
+              <Text style={styles.buttonText}>Cadastrar</Text>
+            </TouchableOpacity>
+          </View>
 
           <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] } 
             onPress={() => {props.navigation.navigate({
