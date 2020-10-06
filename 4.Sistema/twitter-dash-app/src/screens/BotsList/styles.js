@@ -12,26 +12,36 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 50,
+        overflow: 'hidden'
       },
       imagem:{
         marginBottom: 10
       },
       nameProfile:{
-        fontSize: 19,
+        fontSize: 16,
+        fontWeight: 'bold'
       },
       icon:{
         marginLeft: 45
+      },
+      names:{
+        flex: 2,
+        flexDirection: 'column',
+        marginLeft: 5
       },
       listContainer: {
         margin: 5,
         height: 75,
         padding: 10,
-        width: Dimensions.get('window').width * 0.70,
+        width: Dimensions.get('window').width * 0.83,
         justifyContent: 'space-between',
         flexDirection: "row",
         alignItems: 'center',
         backgroundColor: '#FFF',
         borderRadius: 50
+      },
+      list:{
+        width: Dimensions.get('window').width * 0.85,
       },
       profile:{
         height: 65,

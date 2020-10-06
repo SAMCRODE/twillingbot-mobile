@@ -22,7 +22,7 @@ class BotItem{
 };
 
 const BotsSelectScreen = props => {
-  const [botList, setBotList] = useState([new BotItem('0', 'asdfasd', 'leited'), 
+  const [botList, setBotList] = useState([new BotItem('0', 'asdfasd', 'leitededes'), 
     new BotItem('1', 'leitecond', 'leitecond')]);
 
   function toggle(id){
