@@ -149,7 +149,7 @@ const BotsSelectScreen = props => {
         style={styles.button} 
         onPress={tweet.bind(this)}
         >
-          <Text style={styles.buttonText}>{bfunction}</Text>
+          <Text style={styles.buttonText}>{bfunction === 'tweet' ? 'Tweetar' : 'Seguir'}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] } onPress={() => {props.navigation.pop()} }>
