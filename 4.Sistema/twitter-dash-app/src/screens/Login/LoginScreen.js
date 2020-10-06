@@ -3,7 +3,8 @@ import { View,
   Image, 
   Text,
   KeyboardAvoidingView,
-  Alert
+  Alert,
+  ActivityIndicator
 } from 'react-native';
 import styles from './styles';
 
@@ -14,6 +15,7 @@ import inputReducer, { FORM_INPUT_UPDATE } from '../../components/InputReducer';
 import * as authActions from '../../store/actions/auth';
 import User from '../../models/user';
 import { useDispatch } from 'react-redux';
+import { Colors } from 'react-native-paper';
 
 const LoginScreen = props => {
   const [isLoading, setIsLoading] = useState(false);
@@ -73,6 +75,13 @@ const LoginScreen = props => {
     }
   };
 
+  if(isLoading){
+    return ( 
+    <View style={styles.contentCenter}>
+      <ActivityIndicator size="large" color={Colors.blue200} />
+    </View>);
+  }
+
   return (
 
     <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style = {styles.screen}>
@@ -109,10 +118,10 @@ const LoginScreen = props => {
           </View>
 
           <View style={styles.actions}>
-            <View style={{opacity: (formState.formIsValid || isLoading) ? 1.0 : 0.5}}>
+            <View style={{opacity: (formState.formIsValid && !isLoading) ? 1.0 : 0.5}}>
               <TouchableOpacity 
                 style={styles.button} 
-                disabled={!formState.formIsValid || isLoading}
+                disabled={!formState.formIsValid && !isLoading}
                 onPress={loginHandler}>
 
                 <Text style={styles.buttonText}>Entrar</Text>
