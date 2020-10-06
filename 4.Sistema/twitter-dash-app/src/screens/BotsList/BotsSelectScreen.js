@@ -10,6 +10,16 @@ import {Feather} from '@expo/vector-icons';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import logoImg from '../assets/logo.png';
 import profImg from '../assets/bot.jpg';
+
+class BotItem{
+  constructor(id, handle, name){
+    this.id = id;
+    this.handle = handle;
+    this.name = name;
+    this.selected = false;
+  }
+};
+
 const BotsSelectScreen = props => {
   return (
     <View style={styles.screen}>
@@ -20,20 +30,23 @@ const BotsSelectScreen = props => {
       <FlatList 
         style={styles.list}
         showsVerticalScrollIndicator={false}
-        data={[1, 2, 3, 4]}
-        renderItem={() => {return(
-          <View style={styles.listContainer}>
-            <Image style={styles.profile} source={profImg} />
-            <View style={styles.names}>
-            <Text style={styles.nameProfile}>Rafaelzin</Text>
-            <Text >@rafaelzcs</Text>
-            </View>
+        data={[new BotItem('0', 'leitecond', 'leitecond'), new BotItem('1', 'leitecond', 'leitecond')]}
+        keyExtractor={botItem => botItem.id}
+        renderItem={(bot) => {
+          bot = bot.item;
+          return(
+          <TouchableOpacity onPress={() => {bot.selected = !bot.selected}}>
+            <View style={styles.listContainer}>
+              <Image style={styles.profile} source={profImg} />
+              <View style={styles.names}>
+              <Text style={styles.nameProfile}>{bot.name}</Text>
+              <Text >@{bot.handle}</Text>
+              </View>
 
+              <Feather style = {styles.icon} name = "disc" size={16} color={!bot.selected ? "#818181" : "#000000"}/>
           
-
-            <Feather style = {styles.icon} name = "disc" size={16} color="#818181"/>
-        
-          </View>
+            </View>
+          </TouchableOpacity>
         )}}
       />
       <View style={styles.actions}>

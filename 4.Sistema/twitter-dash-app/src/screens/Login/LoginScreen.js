@@ -109,10 +109,10 @@ const LoginScreen = props => {
           </View>
 
           <View style={styles.actions}>
-            <View style={{opacity: (formState.formIsValid || isLoading) ? 1.0 : 0.5}}>
+            <View style={{opacity: (formState.formIsValid && !isLoading) ? 1.0 : 0.5}}>
               <TouchableOpacity 
                 style={styles.button} 
-                disabled={!formState.formIsValid || isLoading}
+                disabled={!formState.formIsValid && !isLoading}
                 onPress={loginHandler}>
 
                 <Text style={styles.buttonText}>Entrar</Text>
