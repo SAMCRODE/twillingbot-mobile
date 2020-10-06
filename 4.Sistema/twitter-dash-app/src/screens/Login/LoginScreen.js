@@ -116,7 +116,7 @@ const LoginScreen = props => {
             required
             />
           </View>
-
+        
           <View style={styles.actions}>
             <View style={{opacity: (formState.formIsValid && !isLoading) ? 1.0 : 0.5}}>
               <TouchableOpacity 

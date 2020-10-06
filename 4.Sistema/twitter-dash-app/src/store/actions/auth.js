@@ -1,5 +1,7 @@
 import Config from '../../config/api';
 import { AsyncStorage } from 'react-native';
+export const AUTHENTICATE = 'AUTHENTICATE';
+export const LOGOUT = 'LOGOUT';
 
 export const signup = (user) => {
     return async dispatch => {
@@ -55,6 +57,8 @@ export const signin = (user) => {
 
         const resData = await response.json();
 
+        dispatch({ type: AUTHENTICATE, user: resData.user, token: resData.jwt});
+        
         saveDataToStorage(resData.jwt, resData.user);
 
         return resData;
