@@ -46,7 +46,7 @@ export const tweet = (botsIds, tweet) => {
                 }
             );
             const resData = await response.json();
-            console.log(resData);
+            // console.log(resData);
             if(!response.ok){
                 throw new Error(resData);
             }

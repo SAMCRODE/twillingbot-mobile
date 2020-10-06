@@ -2,7 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { View, 
   Image, 
   Text,
-  ActivityIndicator
+  ActivityIndicator,
+  Alert
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import styles from './styles';
@@ -11,7 +12,6 @@ import {Feather} from '@expo/vector-icons';
 
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import logoImg from '../assets/logo.png';
-import profImg from '../assets/bot.jpg';
 import { Colors } from 'react-native-paper';
 
 import * as botActions from '../../store/actions/bot';
@@ -61,6 +61,12 @@ const BotsSelectScreen = props => {
     });
   }, [dispatch, loadBots]);
 
+  useEffect(() => {
+    if (error) {
+      Alert.alert('Pempp!', error, [{ text: 'Ok' }]);
+    }
+  }, [error]);
+
   function toggle(id){
     var test = botList.map((item) => {
       if(item.id === id){
@@ -78,12 +84,13 @@ const BotsSelectScreen = props => {
     botSelected = botSelected.map((bot) => bot.id);
     
     if(botSelected.length === 0){
-      
+      Alert.alert('Pempp!', 'Selecione pelo menos 1 bot', [{ text: 'Ok' }]);
+      return;
     }
+
     setIsLoading(true);
 
     try{
-      
       let res;
       
       if(bfunction === 'tweet')
@@ -94,8 +101,8 @@ const BotsSelectScreen = props => {
       setIsLoading(false);
       props.navigation.pop();
     }catch(e){
-      console.log(e);
       setIsLoading(false);
+      setError(e.message);
     }
   }
 
@@ -115,7 +122,7 @@ const BotsSelectScreen = props => {
         style={styles.list}
         showsVerticalScrollIndicator={false}
         data={botList}
-        keyExtractor={botItem => botItem.id}
+        keyExtractor={botItem => botItem.handle}
         renderItem={(bot) => {
           // console.log(bot);
           // console.log('atualizando!\n');
@@ -145,7 +152,7 @@ const BotsSelectScreen = props => {
           <Text style={styles.buttonText}>{bfunction}</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] } onPress={() => {} }>
+        <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] } onPress={() => {props.navigation.pop()} }>
           <Text style={styles.buttonText}>Voltar</Text>
         </TouchableOpacity>
       </View>

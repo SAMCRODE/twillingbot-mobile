@@ -6,7 +6,6 @@ import logoImg from '../assets/logo.png';
 
 const TweetScreen = props => {
   const [tweet, setTweet] = useState('');
-  console.log(tweet, '= tweet');
   
   return (
     <View style={styles.screen}>
