@@ -2,7 +2,8 @@ import React, { useReducer, useCallback, useState, useEffect } from 'react';
 import { View, 
   Image, 
   Text,
-  Alert
+  Alert,
+  ActivityIndicator
 } from 'react-native';
 import styles from './styles';
 
@@ -13,6 +14,7 @@ import inputReducer, { FORM_INPUT_UPDATE } from '../../components/InputReducer';
 import * as authActions from '../../store/actions/auth';
 import User from '../../models/user';
 import { useDispatch } from 'react-redux';
+import { Colors } from 'react-native-paper';
 
 const RegisterScreen = props => {
   const [isLoading, setIsLoading] = useState(false);
@@ -72,6 +74,13 @@ const RegisterScreen = props => {
       setError(err.message);
     }
   };
+
+  if(isLoading){
+    return ( 
+    <View style={styles.contentCenter}>
+      <ActivityIndicator size="large" color={Colors.blue200} />
+    </View>);
+  }
 
   return (
     <View style={styles.screen}>

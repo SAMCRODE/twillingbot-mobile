@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, 
   Image, 
   Text
@@ -10,6 +10,7 @@ import {Feather} from '@expo/vector-icons';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import logoImg from '../assets/logo.png';
 import profImg from '../assets/bot.jpg';
+import { Colors } from 'react-native-paper';
 
 class BotItem{
   constructor(id, handle, name){
@@ -21,6 +22,24 @@ class BotItem{
 };
 
 const BotsSelectScreen = props => {
+  const [botList, setBotList] = useState([new BotItem('0', 'asdfasd', 'leited'), 
+    new BotItem('1', 'leitecond', 'leitecond')]);
+
+  function toggle(id){
+    // console.log(botList);
+
+    var test = botList.map((item) => {
+      if(item.id === id){
+        item.selected = !item.selected;
+      }
+
+      return item;
+    });
+
+    // console.log(test, 'asdfasd');
+    setBotList(test)
+  }
+
   return (
     <View style={styles.screen}>
     <View style={styles.container}>
@@ -30,12 +49,14 @@ const BotsSelectScreen = props => {
       <FlatList 
         style={styles.list}
         showsVerticalScrollIndicator={false}
-        data={[new BotItem('0', 'leitecond', 'leitecond'), new BotItem('1', 'leitecond', 'leitecond')]}
+        data={botList}
         keyExtractor={botItem => botItem.id}
         renderItem={(bot) => {
+          // console.log(bot);
+          // console.log('atualizando!\n');
           bot = bot.item;
           return(
-          <TouchableOpacity onPress={() => {bot.selected = !bot.selected}}>
+          <TouchableOpacity onPress={toggle.bind(this, bot.id)}>
             <View style={styles.listContainer}>
               <Image style={styles.profile} source={profImg} />
               <View style={styles.names}>
@@ -43,7 +64,8 @@ const BotsSelectScreen = props => {
               <Text >@{bot.handle}</Text>
               </View>
 
-              <Feather style = {styles.icon} name = "disc" size={16} color={!bot.selected ? "#818181" : "#000000"}/>
+              <Feather style = {styles.icon} name = {bot.selected ? "check-circle" : "circle"}
+               size={16} color={!bot.selected ? "#818181" : Colors.green400}/>
           
             </View>
           </TouchableOpacity>
