@@ -64,8 +64,8 @@ const BotsSelectScreen = props => {
               <Text >@{bot.handle}</Text>
               </View>
 
-              <Feather style = {styles.icon} name = {bot.selected ? "check-circle" : "circle"}
-               size={16} color={!bot.selected ? "#818181" : Colors.green400}/>
+              <Feather style = {styles.icon} name = {bot.selected ? "disc" : "circle"}
+               size={16} color={!bot.selected ? "#657786" : "#1DA1F2"}/>
           
             </View>
           </TouchableOpacity>
