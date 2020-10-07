@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import styles from './styles';
 import logoImg from '../assets/logo.png';
 
 const TweetScreen = props => {
-
-
+  const [tweet, setTweet] = useState('');
+  
   return (
     <View style={styles.screen}>
 
@@ -16,6 +16,7 @@ const TweetScreen = props => {
       <View style={styles.inputContainer}>
       <Text style={styles.title}>O que você está pensando?</Text>  
       <TextInput 
+      onChangeText={(text) => setTweet(text)}
       style={styles.input}
       multiline = {true}
       numberOfLines = {3}
@@ -27,7 +28,7 @@ const TweetScreen = props => {
       />
       <View style={styles.actions} >
         <TouchableOpacity style={styles.buttonTweet} onPress={() => {
-                  props.navigation.navigate({routeName: 'Bots' }); 
+                  props.navigation.navigate('Bots', {function: 'tweet', data: tweet }); 
                 }}>
           <Text style={styles.buttonText}>Tweetar</Text>
         </TouchableOpacity>

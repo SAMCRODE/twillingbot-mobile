@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -39,19 +39,41 @@ const TweetFollowTabNavigator = createBottomTabNavigator({
     }
 })
 
-const TdaNavigator = createStackNavigator({
+const AuthNavigator = createStackNavigator({
     Login: {
         screen: LoginScreen
     },
-    Begin: {
-        screen: TweetFollowTabNavigator
-    },
     Register: {
         screen: RegisterScreen
+    }
+}, {
+    defaultNavigationOptions: {
+        headerShown: false,
+        cardStyle: { backgroundColor: '#FFFFFF' }
+    }
+});
+
+const AppNavigator = createStackNavigator({
+    Begin: {
+        screen: TweetFollowTabNavigator
     },
     Bots: {
         screen: BotsSelectScreen
     }
+}, {
+    defaultNavigationOptions: {
+        headerShown: false,
+        cardStyle: { backgroundColor: '#FFFFFF' }
+    }
+});
+
+const TdaNavigator = createSwitchNavigator({
+    Auth: {
+        screen: AuthNavigator
+    },
+    App: {
+        screen: AppNavigator
+    },
 }, {
     defaultNavigationOptions: {
         headerShown: false,

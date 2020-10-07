@@ -53,7 +53,8 @@ const FollowScreen = props => {
             <TouchableOpacity 
             style={styles.buttonTweet} 
             onPress={() => {
-              props.navigation.navigate({routeName: 'Bots' }); 
+              props.navigation.navigate('Bots', {function: 'follow', 
+              data: formState.inputValues.handle }); 
             }}
             disabled={!formState.formIsValid}>
               <Text style={styles.buttonText}>Seguir</Text>

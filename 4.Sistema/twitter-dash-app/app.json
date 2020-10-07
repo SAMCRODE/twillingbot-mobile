@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "twitter-dash-app",
+    "name": "Twitter Bot Nave",
     "slug": "twitter-dash-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/bot.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -21,6 +21,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "android": {
+      "package": "br.com.csbot.twitter_bot_nav",
+      "versionCode": 1
     }
   }
 }
