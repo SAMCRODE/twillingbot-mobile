@@ -24,7 +24,8 @@
     },
     "android": {
       "package": "br.com.csbot.twitter_bot_nav",
-      "versionCode": 1
+      "versionCode": 2,
+      "permissions": []
     }
   }
 }
