@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 
 import authReducer from './src/store/reducers/auth';
-import TdaNavigation from './src/navigation/TdaNavigation';
+import NavigationContainer from './src/navigation/NavigationContainer';
 
 const rootReducer = combineReducers({
   auth: authReducer  
@@ -23,7 +23,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <SafeAreaView style={styles.screen}>
-        <TdaNavigation />
+        <NavigationContainer />
       </SafeAreaView>
     </Provider>
   );

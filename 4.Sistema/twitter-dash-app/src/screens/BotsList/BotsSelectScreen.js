@@ -163,4 +163,21 @@ const BotsSelectScreen = props => {
   </View>
   );
 };
+
+// BotsSelectScreen.navigationOptions = navData => {
+//   return {
+//     headerTitle: 'All Products',
+//     headerLeft: (
+//       <HeaderButtons HeaderButtonComponent={HeaderButton}>
+//         <Item
+//           iconName={ 'md-menu'}
+//           onPress={() => {
+//             navData.navigation.toggleDrawer();
+//           }}
+//         />
+//       </HeaderButtons>
+//     ),
+//   };
+// }
+
 export default BotsSelectScreen;

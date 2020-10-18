@@ -1,6 +1,9 @@
 import React, { useReducer, useCallback } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+
 import styles from './styles';
+import HeaderButton from '../../components/UI/HeaderButton';
 import logoImg from '../assets/logo.png';
 import Input from '../../components/Input';
 import inputReducer, { FORM_INPUT_UPDATE } from '../../components/InputReducer';
@@ -68,4 +71,34 @@ const FollowScreen = props => {
     </View>
   );
 };
+
+FollowScreen.navigationOptions = navData => {
+
+  return {
+    headerTitle: '',
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Menu"
+          iconName={'md-menu'}
+          onPress={() => {
+            navData.navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    ),
+    // headerRight: () => (
+    //   <HeaderButtons HeaderButtonComponent={HeaderButton}>
+    //     <Item
+    //       title="Add"
+    //       iconName={Platform.OS === 'android' ? 'md-create' : 'ios-create'}
+    //       onPress={() => {
+    //         navData.navigation.navigate('EditProduct');
+    //       }}
+    //     />
+    //   </HeaderButtons>
+    // )
+  };
+};
+
 export default FollowScreen;

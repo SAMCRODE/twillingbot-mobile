@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
         case AUTHENTICATE:
           return {
             token: action.token,
-            userId: action.user
+            user: action.user
           };
         case LOGOUT:
           return initialState;

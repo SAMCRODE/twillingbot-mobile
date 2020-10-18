@@ -3,7 +3,8 @@ import Config from '../../config/api';
 export const getBotList = () => {
     return async (dispatch, getState) => {
         const token = getState().auth.token;
-
+        console.log('token', token);
+        
         try{
             const response = await fetch(
                 `${Config.apiurl}/bots/list`,
@@ -18,6 +19,7 @@ export const getBotList = () => {
             const resData = await response.json();
             
             if(!response.ok){
+                console.log(resData);
                 throw new Error(resData);
             }
             

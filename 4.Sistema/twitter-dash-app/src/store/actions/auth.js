@@ -31,6 +31,17 @@ export const signup = (user) => {
     }
 }
 
+export const authenticate = (token, user) => {
+    return dispatch => {
+        dispatch({ type: AUTHENTICATE, user: user, token: token });
+    };
+};
+
+export const logout = () => {
+    AsyncStorage.removeItem('userData');
+    return { type: LOGOUT };
+};
+
 export const signin = (user) => {
     return async dispatch => {
 

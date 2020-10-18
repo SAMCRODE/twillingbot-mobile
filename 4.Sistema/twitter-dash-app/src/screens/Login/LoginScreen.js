@@ -68,7 +68,7 @@ const LoginScreen = props => {
       await dispatch(action);
 
       setIsLoading(false);
-      props.navigation.navigate({routeName: 'Begin' });
+      props.navigation.navigate('App');
     } catch (err) {
       setError(err.message);
       setIsLoading(false);
