@@ -4,7 +4,8 @@ import { View,
   Text,
   KeyboardAvoidingView,
   Alert,
-  ActivityIndicator
+  ActivityIndicator,
+  Keyboard
 } from 'react-native';
 import styles from './styles';
 
@@ -12,22 +13,20 @@ import Input from '../../components/Input';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import logoImg from '../assets/logo.png';
 import inputReducer, { FORM_INPUT_UPDATE } from '../../components/InputReducer';
-import * as authActions from '../../store/actions/auth';
-import User from '../../models/user';
 import { useDispatch } from 'react-redux';
 import { Colors } from 'react-native-paper';
+import * as authActions from '../../store/actions/auth';
 
-const LoginScreen = props => {
+const NewPassScreen = props => {
+  const {email, code} = props.navigation.state.params;
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
   const [formState, dispatchFormState] = useReducer(inputReducer, {
     inputValues: {
-      email: '',
-      password: ''
+      password: '',
     },
     inputValidities: {
-      email: false,
-      password: false
+      password: false,
     },
     formIsValid: false
   });
@@ -52,13 +51,15 @@ const LoginScreen = props => {
     }
   }, [error]);
 
-  const loginHandler = async () => {
+  const codeConfirmHandler = async () => {
     if(isLoading) return;
 
     let action;
 
-    action = authActions.signin(
-      new User(0, formState.inputValues.email, formState.inputValues.password)
+    action = authActions.redefinePass(
+      email,
+      code,
+      formState.inputValues.password
     );
     
     setError(null);
@@ -68,7 +69,10 @@ const LoginScreen = props => {
       await dispatch(action);
 
       setIsLoading(false);
-      props.navigation.navigate('App');
+      props.navigation.navigate('Login', {
+          email: email,
+          code: formState.inputValues.code
+        });
     } catch (err) {
       setError(err.message);
       setIsLoading(false);
@@ -84,36 +88,21 @@ const LoginScreen = props => {
 
   return (
 
-    <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style = {styles.screen}>
-
       <View style={styles.screen}>
         <View style={styles.container}>
           <Image style={styles.imagem} source={logoImg}/>
 
           <View style={styles.inputContainer}>
             <Input 
-            id="email"
+            id="password"
             style={styles.input}
             blurOnSubmit
             autoCapitalize="none"
             autoCorrect={false}
-            placeholder="Email"
-            email
+            placeholder="Nova senha"
             onInputChange={inputChangeHandler}
             required
-            errorText="Coloque um email válido"
-            />
-            <Input
-            id="password" 
-            style={styles.input}
-            blurOnSubmit
-            autoCapitalize="none"
-            autoCorrect={false}
-            placeholder="Senha"
-            secureTextEntry={true}
-            errorText="Insira com uma senha"
-            onInputChange={inputChangeHandler}
-            required
+            errorText="Coloque uma senha válida"
             />
           </View>
         
@@ -122,31 +111,16 @@ const LoginScreen = props => {
               <TouchableOpacity 
                 style={styles.button} 
                 disabled={!formState.formIsValid && !isLoading}
-                onPress={loginHandler}>
+                onPress={codeConfirmHandler}>
 
-                <Text style={styles.buttonText}>Entrar</Text>
+                <Text style={styles.buttonText}>Alterar</Text>
               </TouchableOpacity>
-            </View>
-
-            <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] } 
-            onPress={() => {props.navigation.navigate({
-                routeName: 'Register' }); } }>
-              <Text style={styles.buttonText}>Cadastrar</Text>
-            </TouchableOpacity>
-            <View style={styles.forgot}>
-              <Text 
-              style={{color: Colors.blue900, paddingTop: 10}} 
-              onPress={() => {props.navigation.navigate({
-                routeName: 'Forgot' }); }}>
-                Esqueci minha senha
-              </Text>
             </View>
 
           </View>
         </View>
       </View>
-    </KeyboardAvoidingView>
   );
 };
 
-export default LoginScreen;
+export default NewPassScreen;

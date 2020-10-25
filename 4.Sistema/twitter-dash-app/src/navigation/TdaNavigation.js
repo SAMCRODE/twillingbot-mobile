@@ -17,6 +17,9 @@ import Colors from '../constants/Colors';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import StartupScreen from '../screens/StartupScreen';
 import * as authActions from '../store/actions/auth';
+import ForgotPassScreen from '../screens/ForgotPassword/ForgotPassScreen';
+import CodeConfirmScreen from '../screens/CodeConfirm/CodeConfirmScreen';
+import NewPassScreen from '../screens/NewPassword/NewPassScreen';
 
 const TweetNavigator = createStackNavigator(
     {
@@ -64,6 +67,15 @@ const AuthNavigator = createStackNavigator({
     },
     Register: {
         screen: RegisterScreen
+    },
+    Forgot: {
+        screen: ForgotPassScreen
+    },
+    CodeConfirm: {
+        screen: CodeConfirmScreen
+    },
+    NewPass: {
+        screen: NewPassScreen
     }
 }, {
     defaultNavigationOptions: {

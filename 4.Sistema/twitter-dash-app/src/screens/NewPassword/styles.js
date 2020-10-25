@@ -1,5 +1,4 @@
 import {StyleSheet, Dimensions} from 'react-native';
-import Colors from '../../constants/Colors';
 
 export default StyleSheet.create({
   contentCenter: {
@@ -9,20 +8,19 @@ export default StyleSheet.create({
   },
   screen: {
     flex: 1,
-    backgroundColor: '#F5F8FA'
+    backgroundColor: '#F5F8FA',
   },
   container: {
     flex: 1,
     width: Dimensions.get('window').width,
     marginVertical: Dimensions.get('window').height / 60,
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 40,
+    padding: 60,
     overflow: 'visible'
   },
   inputContainer: {
     marginTop: 30,
-    marginBottom: 20,
   },
   input: {
     width: Dimensions.get('window').width * 0.65,
@@ -31,18 +29,20 @@ export default StyleSheet.create({
     width: 195,
     height: 35,
     marginTop: 10,
-    backgroundColor: Colors.accentColor,
+    backgroundColor: '#1DA1F2',
     borderRadius: 50,
     justifyContent: "center",
     alignItems: 'center'
-
   },
   buttonText:{
     color: '#fff',
     fontWeight: 'bold'
   },
-  forgot: {
-    justifyContent: 'center',
-    alignItems: 'center',
+  errorContainer: {
+    marginVertical: 5
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 13
   }
 })

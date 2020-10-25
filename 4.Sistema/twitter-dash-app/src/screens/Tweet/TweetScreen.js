@@ -44,7 +44,6 @@ const TweetScreen = props => {
 };
 
 TweetScreen.navigationOptions = navData => {
-  console.log('asdopfkasopdk\n');
 
   return {
     headerTitle: '',
