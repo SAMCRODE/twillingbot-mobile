@@ -41,7 +41,6 @@ export default StyleSheet.create({
   subtitle: {
     fontSize: 15,
     marginBottom: 5,
-    color: '#aaaaaa',
-    textAlign: 'left'
+    color: '#aaaaaa'
   }
 });

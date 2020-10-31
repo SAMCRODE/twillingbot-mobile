@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 import { DrawerItems } from 'react-navigation-drawer';
-import { SafeAreaView, Button, View } from 'react-native';
+import { Linking, Button, View, Text } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, Entypo } from '@expo/vector-icons';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import BotsSelectScreen from '../screens/BotsList/BotsSelectScreen';
 import FollowScreen from '../screens/Follow/FollowScreen';
 import LoginScreen from '../screens/Login/LoginScreen';
-import TweetScreen from '../screens/Tweet/TweetScreen';
 import RegisterScreen from '../screens/Register/RegisterScreen';
 import Colors from '../constants/Colors';
 import { createDrawerNavigator } from 'react-navigation-drawer';
@@ -20,13 +19,8 @@ import * as authActions from '../store/actions/auth';
 import ForgotPassScreen from '../screens/ForgotPassword/ForgotPassScreen';
 import CodeConfirmScreen from '../screens/CodeConfirm/CodeConfirmScreen';
 import NewPassScreen from '../screens/NewPassword/NewPassScreen';
-
-const TweetNavigator = createStackNavigator(
-    {
-        TweetSc: TweetScreen
-    }
-
-);
+import RetweetScreen from '../screens/Retweet/RetweetScreen';
+import LikeScreen from '../screens/LikeScreen/LikeScreen';
 
 const FollowNavigator = createStackNavigator(
     {
@@ -34,17 +28,19 @@ const FollowNavigator = createStackNavigator(
     }
 );
 
+const RetweetNavigator = createStackNavigator(
+    {
+        RetweetSc: RetweetScreen
+    }
+)
+
+const LikeNavigator = createStackNavigator(
+    {
+        LikeSc: LikeScreen
+    }
+)
+
 const TweetFollowTabNavigator = createBottomTabNavigator({
-    Tweet: {
-        screen: TweetNavigator,
-        navigationOptions: {
-            tabBarIcon: tabInfo => {
-                return (
-                    <Ionicons name="logo-twitter" size={25} color={tabInfo.tintColor} />
-                );
-            }
-        }
-    },
     Follow: {
         screen: FollowNavigator,
         navigationOptions: {
@@ -52,6 +48,32 @@ const TweetFollowTabNavigator = createBottomTabNavigator({
                 return (
                     <Ionicons name="ios-person-add" size={25} color={tabInfo.tintColor} />
                 )
+            }
+        }
+    },
+    Retweet: {
+        screen: RetweetNavigator,
+        navigationOptions: {
+            tabBarIcon: tabInfo => {
+                return (
+                    <Entypo name="retweet" size={25} color={tabInfo.tintColor} />
+                )
+            },
+            tabBarOptions: {
+                activeTintColor: Colors.greenRetweet
+            }
+        }
+    },
+    Like: {
+        screen: LikeNavigator,
+        navigationOptions: {
+            tabBarIcon: tabInfo => {
+                return (
+                    <Ionicons name="md-heart" size={25} color={tabInfo.tintColor} />
+                )
+            },
+            tabBarOptions: {
+                activeTintColor: Colors.redLike
             }
         }
     }
@@ -107,6 +129,20 @@ const AppNavigator = createStackNavigator({
       },
 });
 
+const OpenURLButton = ({ url, children }) => {
+    const handlePress = useCallback(async () => {
+      const supported = await Linking.canOpenURL(url);
+  
+      if (supported) {
+        await Linking.openURL(url);
+      } else {
+        Alert.alert(`Erro ao abrir url: ${url}`);
+      }
+    }, [url]);
+  
+    return <Button title={children} onPress={handlePress} />;
+};
+
 const drawerNavigator = createDrawerNavigator(
     {
         Initial: {
@@ -123,18 +159,28 @@ const drawerNavigator = createDrawerNavigator(
       contentComponent: props => {
         const dispatch = useDispatch();
         return (
-          <View style={{ flex: 1, paddingTop: 20 }}>
-            <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
-              <DrawerItems {...props} />
-              <Button
-                title="Sair"
-                color={Colors.primary}
-                onPress={() => {
-                  dispatch(authActions.logout());
-                  // props.navigation.navigate('Auth');
-                }}
-              />
-            </SafeAreaView>
+          <View style={{ flex: 1, paddingTop: 60 }}>
+              <View style={{flex: 1}}>
+                <DrawerItems {...props} />
+                <View style={{paddingTop: 10}}>
+                <OpenURLButton url={'https://github.com/rafaelcsva/Twilling-Bot'}>
+                    repositório git</OpenURLButton>
+                <Text style={{textAlign: 'center'}}>
+                    Contribuidores: [Rafaelcs, Matheusvdl]</Text>
+                </View>
+              </View>
+              <View style={{flex: 1, justifyContent: 'flex-end'}}>
+                
+                <Button
+                    title="Sair"
+                    color={Colors.primary}
+                    onPress={() => {
+                    dispatch(authActions.logout());
+                    // props.navigation.navigate('Auth');
+                    }}
+                    
+                />
+              </View>
           </View>
         );
       }

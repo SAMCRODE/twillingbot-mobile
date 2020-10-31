@@ -8,7 +8,7 @@ import logoImg from '../assets/logo.png';
 import Input from '../../components/Input';
 import inputReducer, { FORM_INPUT_UPDATE } from '../../components/InputReducer';
 
-const FollowScreen = props => {
+const LikeScreen = props => {
   const [formState, dispatchFormState] = useReducer(inputReducer, {
     inputValues: {
       handle: ''
@@ -39,8 +39,8 @@ const FollowScreen = props => {
     <View style={styles.inputContainer}>
 
         <Text style={styles.title}>Digite o nome do usuário:</Text>
-        <Text style={styles.subtitle}>os bots seguirão o usuário especificado</Text>
-
+        <Text style={styles.subtitle}>será curtido os últimos tweets</Text>
+        
         <Input 
         id="handle"
         style={styles.input}
@@ -57,13 +57,14 @@ const FollowScreen = props => {
             <TouchableOpacity 
             style={styles.buttonTweet} 
             onPress={() => {
-              props.navigation.navigate('Bots', {function: 'follow', 
+              props.navigation.navigate('Bots', {function: 'like', 
               data: formState.inputValues.handle }); 
             }}
             disabled={!formState.formIsValid}>
-              <Text style={styles.buttonText}>Seguir</Text>
+              <Text style={styles.buttonText}>Curtir</Text>
             </TouchableOpacity>
           </View>
+          
         </View>
 
     </View>
@@ -73,7 +74,7 @@ const FollowScreen = props => {
   );
 };
 
-FollowScreen.navigationOptions = navData => {
+LikeScreen.navigationOptions = navData => {
 
   return {
     headerTitle: '',
@@ -102,4 +103,4 @@ FollowScreen.navigationOptions = navData => {
   };
 };
 
-export default FollowScreen;
+export default LikeScreen;

@@ -93,10 +93,18 @@ const BotsSelectScreen = props => {
     try{
       let res;
       
-      if(bfunction === 'tweet')
-        res = await dispatch(botActions.tweet(botSelected, tdata));
-      else
-        res = await dispatch(botActions.follow(botSelected, tdata));
+      switch(bfunction){
+        case 'tweet':
+          res = await dispatch(botActions.tweet(botSelected, tdata));
+          break
+        case 'follow':
+          res = await dispatch(botActions.follow(botSelected, tdata));
+          break;
+        case 'like':
+
+        case 'retweet':
+          
+      }
 
       setIsLoading(false);
       props.navigation.pop();
@@ -117,6 +125,7 @@ const BotsSelectScreen = props => {
     <View style={styles.screen}>
     <View style={styles.container}>
       <Image style={styles.imagem} source={logoImg}/>
+      <Text>Escolha um ou mais bots para realizar a ação</Text>
 
       <FlatList 
         style={styles.list}
@@ -149,7 +158,7 @@ const BotsSelectScreen = props => {
         style={styles.button} 
         onPress={tweet.bind(this)}
         >
-          <Text style={styles.buttonText}>{bfunction === 'tweet' ? 'Tweetar' : 'Seguir'}</Text>
+          <Text style={styles.buttonText}>Prosseguir</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] } onPress={() => {props.navigation.pop()} }>
