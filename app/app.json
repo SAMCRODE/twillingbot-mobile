@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Twitter Bot Nave",
-    "slug": "twitter-dash-app",
+    "name": "Twilling Bot",
+    "slug": "twilling-bot-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/bot.png",
@@ -23,7 +23,7 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
-      "package": "br.com.csbot.twitter_bot_nav",
+      "package": "br.com.csbot.twilling_bot",
       "versionCode": 2,
       "permissions": []
     }
