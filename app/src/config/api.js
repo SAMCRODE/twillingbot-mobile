@@ -1,7 +1,6 @@
 const Config = {};
 
-Config.apiurl = 'https://twitter-dash-backend.herokuapp.com';
-Config.apiurl = 'http://192.168.0.55:3000';
+Config.apiurl = 'https://twillingbot.herokuapp.com';
 
 Config.codes = {
     wrongCredentials: 'AUTHWR',

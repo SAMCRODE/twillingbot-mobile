@@ -89,3 +89,63 @@ export const follow = (botsIds, handle) => {
         }
     }
 }
+
+export const like = (botsIds, handle) => {
+    return async (dispatch, getState) => {
+        const token = getState().auth.token;
+
+        try{
+            const response = await fetch(
+                `${Config.apiurl}/bots/like`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                    body: JSON.stringify({botIds: botsIds, handle: handle})
+                }
+            );
+            const resData = await response.json();
+            
+            if(!response.ok){
+                throw new Error(resData);
+            }
+            
+            // console.log('recebi', resData);
+            return resData.res;
+        }catch(e){
+            throw e;
+        }
+    }
+}
+
+export const retweet = (botsIds, handle) => {
+    return async (dispatch, getState) => {
+        const token = getState().auth.token;
+
+        try{
+            const response = await fetch(
+                `${Config.apiurl}/bots/retweet`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                    body: JSON.stringify({botIds: botsIds, handle: handle})
+                }
+            );
+            const resData = await response.json();
+            
+            if(!response.ok){
+                throw new Error(resData);
+            }
+            
+            // console.log('recebi', resData);
+            return resData.res;
+        }catch(e){
+            throw e;
+        }
+    }
+}

@@ -39,7 +39,8 @@ const RetweetScreen = props => {
     <View style={styles.inputContainer}>
 
         <Text style={styles.title}>Digite o nome do usuário:</Text>
-        <Text style={styles.subtitle}>será retweetado os últimos tweets</Text>
+        <Text style={styles.subtitle} numberOfLines={2}>os bots irão retweetar o último 
+        tweet do usuário especificado</Text>
         <Input 
         id="handle"
         style={styles.input}

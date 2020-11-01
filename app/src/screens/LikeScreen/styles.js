@@ -39,7 +39,7 @@ export default StyleSheet.create({
     fontWeight: 'bold'
   },
   subtitle: {
-    fontSize: 15,
+    fontSize: 12,
     marginBottom: 5,
     color: '#aaaaaa',
     textAlign: 'left'

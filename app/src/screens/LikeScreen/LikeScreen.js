@@ -39,8 +39,9 @@ const LikeScreen = props => {
     <View style={styles.inputContainer}>
 
         <Text style={styles.title}>Digite o nome do usuário:</Text>
-        <Text style={styles.subtitle}>será curtido os últimos tweets</Text>
-        
+        <Text style={styles.subtitle}>os bots irão curtir o último 
+        tweet do usuário especificado</Text>
+
         <Input 
         id="handle"
         style={styles.input}

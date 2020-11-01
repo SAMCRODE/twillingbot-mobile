@@ -94,16 +94,14 @@ const BotsSelectScreen = props => {
       let res;
       
       switch(bfunction){
-        case 'tweet':
-          res = await dispatch(botActions.tweet(botSelected, tdata));
-          break
         case 'follow':
           res = await dispatch(botActions.follow(botSelected, tdata));
           break;
         case 'like':
-
+          res = await dispatch(botActions.like(botSelected, tdata));
+          break;
         case 'retweet':
-          
+          res = await dispatch(botActions.retweet(botSelected, tdata));
       }
 
       setIsLoading(false);
