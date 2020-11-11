@@ -11,3 +11,7 @@ This is an App to control bots on twitter. It was constructed with expo managed 
 
 First you need to clone this repository, and after that you need to install the project, it was builted with expo, please refer https://expo.io/learn to know how
 to run this app.
+
+### Backend
+
+You can use the backend https://github.com/rafaelcsva/twilling-backend instance that is running on https://twillingbot.herokuapp.com, so you dont need to care about it.
