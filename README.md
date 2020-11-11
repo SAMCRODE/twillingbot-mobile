@@ -1,10 +1,11 @@
 # Twitter Dash App
 This is an App to control bots on twitter. It was constructed with expo managed workflow and have the following functionalities:
 
+- Use bots to like/retweet the last tweet from someone
+- Use bots to follow someone
 - Register a new Account
 - Login/Logout on the app
-- Use bots to tweet Something
-- Use bots to follow someone
+- Request new password
 
 ## How to test the app
 
