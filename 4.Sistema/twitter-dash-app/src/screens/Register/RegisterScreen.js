@@ -15,6 +15,7 @@ import * as authActions from '../../store/actions/auth';
 import User from '../../models/user';
 import { useDispatch } from 'react-redux';
 import { Colors } from 'react-native-paper';
+import i18n from 'i18n-js';
 
 const RegisterScreen = props => {
   const [isLoading, setIsLoading] = useState(false);
@@ -106,7 +107,7 @@ const RegisterScreen = props => {
             blurOnSubmit
             autoCapitalize="none"
             autoCorrect={false}
-            placeholder="Senha"
+            placeholder={i18n.t('password')}
             secureTextEntry={true}
             errorText="Insira com uma senha"
             onInputChange={inputChangeHandler}
@@ -118,7 +119,7 @@ const RegisterScreen = props => {
             blurOnSubmit
             autoCapitalize="none"
             autoCorrect={false}
-            placeholder="Confirme a senha"
+            placeholder={i18n.t('confirmPassword')}
             secureTextEntry={true}
             errorText=""
             onInputChange={inputChangeHandler}
@@ -126,7 +127,7 @@ const RegisterScreen = props => {
           />
           {formState.inputValues.password !== formState.inputValues.confirmPassword && 
           <View style={styles.errorContainer}>
-            <Text style={styles.errorText}>As senhas são divergentes</Text>
+            <Text style={styles.errorText}>{i18n.t('passwordMiss')}</Text>
           </View>}
         </View>
 
@@ -137,14 +138,14 @@ const RegisterScreen = props => {
             onPress={registerHandler}
             disabled={!formState.formIsValid && !isLoading}
             >
-              <Text style={styles.buttonText}>Cadastrar</Text>
+              <Text style={styles.buttonText}>{i18n.t('register')}</Text>
             </TouchableOpacity>
           </View>
 
           <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] } 
             onPress={() => {props.navigation.navigate({
               routeName: 'Login' });} }>
-            <Text style={styles.buttonText}>Voltar</Text>
+            <Text style={styles.buttonText}>{i18n.t('back')}</Text>
           </TouchableOpacity>
 
         </View>

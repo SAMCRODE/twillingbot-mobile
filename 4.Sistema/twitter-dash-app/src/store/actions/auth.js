@@ -1,5 +1,6 @@
 import Config from '../../config/api';
 import { AsyncStorage } from 'react-native';
+import i18n from 'i18n-js';
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const LOGOUT = 'LOGOUT';
 
@@ -59,11 +60,7 @@ export const signin = (user) => {
         if (!response.ok) {
             const errorResData = await response.json();
             
-            if(errorResData.code === Config.codes.wrongCredentials){
-                throw new Error('Email ou senha inválidos irmão');
-            }
-            
-            throw new Error('Algo sinistro ocorreu nos nossos servidores');
+                throw new Error(i18n.t(errorResData.code));
         }
 
         const resData = await response.json();

@@ -13,6 +13,7 @@ import {Feather} from '@expo/vector-icons';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import logoImg from '../assets/logo.png';
 import { Colors } from 'react-native-paper';
+import i18n from 'i18n-js';
 
 import * as botActions from '../../store/actions/bot';
 
@@ -43,7 +44,7 @@ const BotsSelectScreen = props => {
     try {
       const res = await dispatch(botActions.getBotList());
       // console.log(res);
-      const bots = res.map((bot) => {return {...bot, selected: false}});
+      const bots = res.map((bot) => {return {...bot, selected: true}});
       setBotList(bots);
       setIsLoading(false);
     } catch (err) {
@@ -84,7 +85,7 @@ const BotsSelectScreen = props => {
     botSelected = botSelected.map((bot) => bot.id);
     
     if(botSelected.length === 0){
-      Alert.alert('Pempp!', 'Selecione pelo menos 1 bot', [{ text: 'Ok' }]);
+      Alert.alert('Pempp!', i18n.t('MissBots'), [{ text: 'Ok' }]);
       return;
     }
 
@@ -153,7 +154,7 @@ const BotsSelectScreen = props => {
         </TouchableOpacity>
 
         <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] } onPress={() => {props.navigation.pop()} }>
-          <Text style={styles.buttonText}>Voltar</Text>
+          <Text style={styles.buttonText}>{i18n.t('back')}</Text>
         </TouchableOpacity>
       </View>
 

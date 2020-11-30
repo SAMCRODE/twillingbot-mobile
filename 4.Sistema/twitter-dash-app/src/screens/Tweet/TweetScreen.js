@@ -6,6 +6,7 @@ import styles from './styles';
 import HeaderButton from '../../components/UI/HeaderButton';
 import logoImg from '../assets/logo.png';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import i18n from 'i18n-js';
 
 const TweetScreen = props => {
   const [tweet, setTweet] = useState('');
@@ -17,7 +18,7 @@ const TweetScreen = props => {
       <Image style={styles.imagem} source={logoImg}/>
 
       <View style={styles.inputContainer}>
-      <Text style={styles.title}>O que você está pensando?</Text>  
+      <Text style={styles.title}>{i18n.t('headerTweet')}</Text>  
       <TextInput 
       onChangeText={(text) => setTweet(text)}
       style={styles.input}

@@ -16,6 +16,7 @@ import * as authActions from '../../store/actions/auth';
 import User from '../../models/user';
 import { useDispatch } from 'react-redux';
 import { Colors } from 'react-native-paper';
+import i18n from 'i18n-js';
 
 const LoginScreen = props => {
   const [isLoading, setIsLoading] = useState(false);
@@ -48,7 +49,7 @@ const LoginScreen = props => {
 
   useEffect(() => {
     if (error) {
-      Alert.alert('Pempp!', error, [{ text: 'Foi mau' }]);
+      Alert.alert('Pempp!', error, [{ text: i18n.t('TryAgain') }]);
     }
   }, [error]);
 
@@ -109,9 +110,9 @@ const LoginScreen = props => {
             blurOnSubmit
             autoCapitalize="none"
             autoCorrect={false}
-            placeholder="Senha"
+            placeholder={i18n.t('password')}
             secureTextEntry={true}
-            errorText="Insira com uma senha"
+            errorText={i18n.t('senhaErrorInput')}
             onInputChange={inputChangeHandler}
             required
             />
@@ -124,21 +125,21 @@ const LoginScreen = props => {
                 disabled={!formState.formIsValid && !isLoading}
                 onPress={loginHandler}>
 
-                <Text style={styles.buttonText}>Entrar</Text>
+                <Text style={styles.buttonText}>{i18n.t('getIn')}</Text>
               </TouchableOpacity>
             </View>
 
             <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] } 
             onPress={() => {props.navigation.navigate({
                 routeName: 'Register' }); } }>
-              <Text style={styles.buttonText}>Cadastrar</Text>
+              <Text style={styles.buttonText}>{i18n.t('register')}</Text>
             </TouchableOpacity>
             <View style={styles.forgot}>
               <Text 
               style={{color: Colors.blue900, paddingTop: 10}} 
               onPress={() => {props.navigation.navigate({
                 routeName: 'Forgot' }); }}>
-                Esqueci minha senha
+                {i18n.t('forgetPass')}
               </Text>
             </View>
 

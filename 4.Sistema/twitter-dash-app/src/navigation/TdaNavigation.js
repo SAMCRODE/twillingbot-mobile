@@ -20,6 +20,7 @@ import * as authActions from '../store/actions/auth';
 import ForgotPassScreen from '../screens/ForgotPassword/ForgotPassScreen';
 import CodeConfirmScreen from '../screens/CodeConfirm/CodeConfirmScreen';
 import NewPassScreen from '../screens/NewPassword/NewPassScreen';
+import i18n from 'i18n-js';
 
 const TweetNavigator = createStackNavigator(
     {
@@ -112,7 +113,7 @@ const drawerNavigator = createDrawerNavigator(
         Initial: {
             screen: AppNavigator,
             navigationOptions: {
-                drawerLabel: 'Inicio'
+                drawerLabel: i18n.t('Begin')
             }
         }
     },
@@ -127,7 +128,7 @@ const drawerNavigator = createDrawerNavigator(
             <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
               <DrawerItems {...props} />
               <Button
-                title="Sair"
+                title={i18n.t('exit')}
                 color={Colors.primary}
                 onPress={() => {
                   dispatch(authActions.logout());

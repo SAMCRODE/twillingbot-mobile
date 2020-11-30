@@ -7,6 +7,7 @@ import HeaderButton from '../../components/UI/HeaderButton';
 import logoImg from '../assets/logo.png';
 import Input from '../../components/Input';
 import inputReducer, { FORM_INPUT_UPDATE } from '../../components/InputReducer';
+import i18n from 'i18n-js';
 
 const FollowScreen = props => {
   const [formState, dispatchFormState] = useReducer(inputReducer, {
@@ -38,7 +39,7 @@ const FollowScreen = props => {
 
     <View style={styles.inputContainer}>
 
-        <Text style={styles.title}>Digite o nome do usuário:</Text>
+        <Text style={styles.title}>{i18n.t('headerFollow')}</Text>
 
         <Input 
         id="handle"
@@ -60,7 +61,7 @@ const FollowScreen = props => {
               data: formState.inputValues.handle }); 
             }}
             disabled={!formState.formIsValid}>
-              <Text style={styles.buttonText}>Seguir</Text>
+              <Text style={styles.buttonText}>{i18n.t('follow')}</Text>
             </TouchableOpacity>
           </View>
         </View>
