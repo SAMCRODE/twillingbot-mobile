@@ -25,6 +25,7 @@ i18n.locale = Localization.locale;
 
 i18n.translations = {
   en: { 
+    Begin: 'Home',
     forgetPass: 'Forgot you pass ?', 
     register: 'Register',
     getIn: 'Enter',
