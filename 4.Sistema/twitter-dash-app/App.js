@@ -54,7 +54,7 @@ i18n.translations = {
     headerTweet: 'O que você está pensando?',
     headerFollow: 'Digite o nome do usuário',
     exit: 'sair',
-    follow: 'Feguir',
+    follow: 'Seguir',
     Begin: 'Inicio',
     EMAILREP: 'Já temos uma conta cadastrada para esse email',
     AUTHWR: 'Email ou senha incorretos',
