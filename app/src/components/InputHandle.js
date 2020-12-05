@@ -31,7 +31,7 @@ const inputReducer = (state, action) => {
 
 const InputHandle = props => {
   const handles = useSelector(state => state.user.handles);
-  const [filteredHandles, setFilteredHandles] = useState([]);
+  const [filteredHandles, setFilteredHandles] = useState(handles);
   const [selectedValue, setSelectedValue] = useState('');
 
   const [inputState, dispatch] = useReducer(inputReducer, {
@@ -80,9 +80,9 @@ const InputHandle = props => {
 
         setFilteredHandles(
             handles.filter((handle) => handle.search(regex) >= 0)
-    );
+        );
     } else {
-        setFilteredHandles([]);
+        setFilteredHandles(handles);
     }
   }
 
@@ -103,7 +103,7 @@ const InputHandle = props => {
           <TouchableOpacity
             onPress={() => {
                 setSelectedValue(item);
-                setFilteredHandles([]);
+                setFilteredHandles(handles);
                 dispatch({ type: INPUT_CHANGE, value: item, isValid: true });
             }}
           >
