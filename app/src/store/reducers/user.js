@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native';
 import { NEW_HANDLE, INIT } from '../actions/user';
 
 const initialState = {
-    handles: ['@neymarjr', 'neyilton'],
+    handles: ['@neymarjr'],
 };
   
 export default (state = initialState, action) => {

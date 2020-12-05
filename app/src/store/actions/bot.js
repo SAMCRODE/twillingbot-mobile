@@ -111,7 +111,7 @@ export const like = (botsIds, handle) => {
             if(!response.ok){
                 throw new Error(resData);
             }
-            
+            // console.log(resData);
             // console.log('recebi', resData);
             return resData.res;
         }catch(e){

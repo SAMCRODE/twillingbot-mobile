@@ -28,7 +28,6 @@ const StartupScreen = props => {
       const handles = JSON.parse(await AsyncStorage.getItem('handles'));
 
       dispatch(authActions.authenticate(token, user));
-      console.log(handles);
       if(handles !== undefined)
         dispatch(userActions.init(handles));
     };

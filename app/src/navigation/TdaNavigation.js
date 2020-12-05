@@ -129,7 +129,7 @@ const AppNavigator = createStackNavigator({
       },
 });
 
-const OpenURLButton = ({ url, children }) => {
+const OpenURLButton = ({ url, title }) => {
     const handlePress = useCallback(async () => {
       const supported = await Linking.canOpenURL(url);
   
@@ -140,7 +140,7 @@ const OpenURLButton = ({ url, children }) => {
       }
     }, [url]);
   
-    return <Button title={children} onPress={handlePress} />;
+    return <Button title={title} onPress={handlePress} />;
 };
 
 const drawerNavigator = createDrawerNavigator(
@@ -163,10 +163,12 @@ const drawerNavigator = createDrawerNavigator(
               <View style={{flex: 1}}>
                 <DrawerItems {...props} />
                 <View style={{paddingTop: 10}}>
-                <OpenURLButton url={'https://github.com/rafaelcsva/Twilling-Bot'}>
-                    repositório git</OpenURLButton>
-                <Text style={{textAlign: 'center'}}>
-                    Contribuidores: [Rafaelcs, Matheusvdl]</Text>
+                <OpenURLButton url={'https://github.com/rafaelcsva/Twilling-Bot'}
+                    title={'<code>'}
+                />
+                </View>
+                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                <Ionicons name="logo-github" size={25} color={Colors.blueTwitter}/>
                 </View>
               </View>
               <View style={{flex: 1, justifyContent: 'flex-end'}}>
