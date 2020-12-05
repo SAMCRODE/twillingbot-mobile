@@ -15,6 +15,7 @@ import logoImg from '../assets/logo.png';
 import { Colors } from 'react-native-paper';
 
 import * as botActions from '../../store/actions/bot';
+import * as userActions from '../../store/actions/user';
 
 class BotItem{
   constructor(id, handle, name, profileImage, followersCount){
@@ -104,6 +105,7 @@ const BotsSelectScreen = props => {
           res = await dispatch(botActions.retweet(botSelected, tdata));
       }
 
+      dispatch(userActions.new_handle(tdata));
       setIsLoading(false);
       props.navigation.pop();
     }catch(e){
@@ -120,10 +122,11 @@ const BotsSelectScreen = props => {
   }
 
   return (
-    <View style={styles.screen}>
+    <View style={styles.screen}> 
     <View style={styles.container}>
       <Image style={styles.imagem} source={logoImg}/>
-      <Text>Escolha um ou mais bots para realizar a ação</Text>
+      <Text>Escolha um ou mais bots 
+        para realizar a ação {bfunction}>{tdata}</Text>
 
       <FlatList 
         style={styles.list}

@@ -104,6 +104,7 @@ const InputHandle = props => {
             onPress={() => {
                 setSelectedValue(item);
                 setFilteredHandles([]);
+                dispatch({ type: INPUT_CHANGE, value: item, isValid: true });
             }}
           >
             <Text

@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 
 import Colors from '../constants/Colors';
 import * as authActions from '../store/actions/auth';
+import * as userActions from '../store/actions/user';
 
 const StartupScreen = props => {
   const dispatch = useDispatch();
@@ -24,7 +25,12 @@ const StartupScreen = props => {
       const { token, user } = transformedData;
 
       props.navigation.navigate('App');
+      const handles = JSON.parse(await AsyncStorage.getItem('handles'));
+
       dispatch(authActions.authenticate(token, user));
+      console.log(handles);
+      if(handles !== undefined)
+        dispatch(userActions.init(handles));
     };
 
     tryLogin();
