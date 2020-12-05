@@ -43,7 +43,7 @@ const BotsSelectScreen = props => {
     try {
       const res = await dispatch(botActions.getBotList());
       // console.log(res);
-      const bots = res.map((bot) => {return {...bot, selected: false}});
+      const bots = res.map((bot) => {return {...bot, selected: true}});
       setBotList(bots);
       setIsLoading(false);
     } catch (err) {

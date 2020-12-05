@@ -2,7 +2,7 @@
   "expo": {
     "name": "Twilling Bot",
     "slug": "twilling-bot-app",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/bot.png",
     "splash": {
@@ -24,7 +24,7 @@
     },
     "android": {
       "package": "br.com.csbot.twilling_bot",
-      "versionCode": 2,
+      "versionCode": 3,
       "permissions": []
     }
   }
