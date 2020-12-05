@@ -5,8 +5,9 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import styles from './styles';
 import HeaderButton from '../../components/UI/HeaderButton';
 import logoImg from '../assets/logo.png';
-import Input from '../../components/Input';
+// import Input from '../../components/Input';
 import inputReducer, { FORM_INPUT_UPDATE } from '../../components/InputReducer';
+import InputHandle from '../../components/InputHandle';
 
 const LikeScreen = props => {
   const [formState, dispatchFormState] = useReducer(inputReducer, {
@@ -42,7 +43,7 @@ const LikeScreen = props => {
         <Text style={styles.subtitle}>os bots irão curtir o último 
         tweet do usuário especificado</Text>
 
-        <Input 
+        <InputHandle 
         id="handle"
         style={styles.input}
         blurOnSubmit

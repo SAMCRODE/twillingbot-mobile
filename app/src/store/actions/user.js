@@ -1,0 +1,1 @@
+export const NEW_HANDLE = 'NEW_HANDLE';

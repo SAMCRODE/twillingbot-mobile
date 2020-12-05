@@ -7,6 +7,7 @@ import HeaderButton from '../../components/UI/HeaderButton';
 import logoImg from '../assets/logo.png';
 import Input from '../../components/Input';
 import inputReducer, { FORM_INPUT_UPDATE } from '../../components/InputReducer';
+import InputHandle from '../../components/InputHandle';
 
 const FollowScreen = props => {
   const [formState, dispatchFormState] = useReducer(inputReducer, {
@@ -41,7 +42,7 @@ const FollowScreen = props => {
         <Text style={styles.title}>Digite o nome do usuário:</Text>
         <Text style={styles.subtitle}>os bots seguirão o usuário especificado</Text>
 
-        <Input 
+        <InputHandle 
         id="handle"
         style={styles.input}
         blurOnSubmit

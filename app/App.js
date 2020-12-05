@@ -9,10 +9,12 @@ import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 
 import authReducer from './src/store/reducers/auth';
+import userReducer from './src/store/reducers/user';
 import NavigationContainer from './src/navigation/NavigationContainer';
 
 const rootReducer = combineReducers({
-  auth: authReducer  
+  auth: authReducer,
+  user: userReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
