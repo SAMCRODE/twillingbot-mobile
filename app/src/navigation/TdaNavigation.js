@@ -169,6 +169,7 @@ const drawerNavigator = createDrawerNavigator(
                 </View>
                 <View style={{justifyContent: 'center', alignItems: 'center'}}>
                 <Ionicons name="logo-github" size={25} color={Colors.blueTwitter}/>
+                    <Text style={{color: Colors.blueTwitter}}>@rafaelcsva @matheusvdL</Text>
                 </View>
               </View>
               <View style={{flex: 1, justifyContent: 'flex-end'}}>

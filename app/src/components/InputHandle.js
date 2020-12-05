@@ -88,7 +88,6 @@ const InputHandle = props => {
 
   return (
   <View style={styles.inputContainer}>
-    {icon}
     <Autocomplete 
       {...props} 
       data={filteredHandles}
@@ -96,11 +95,12 @@ const InputHandle = props => {
         selectedValue
       }
       keyExtractor={(item, i) => 'key' + i}
-      style={{ ...styles.input, ...props.style }} 
+      containerStyle={{ ...styles.input, ...props.style }} 
+      listContainerStyle={styles.suggest}
+      listStyle={styles.suggest}
       placeholder={props.placeholder}
       renderItem={({item}) => (
           <TouchableOpacity
-            style={styles.suggest}
             onPress={() => {
                 setSelectedValue(item);
                 setFilteredHandles([]);
@@ -135,10 +135,11 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   },
   input: {
-    height: 30,
-    borderBottomColor: 'grey',
+    height: 40,
+    borderBottomColor: '#ffffff',
+    width: '100%',
+    height: '100%',
     borderBottomWidth: 0,
-    marginVertical: 10,
     padding: 3,
     backgroundColor: '#ffffff',
     borderWidth: 0,
