@@ -8,8 +8,7 @@ import { View,
 import { useDispatch } from 'react-redux';
 import styles from './styles';
 
-import {Feather} from '@expo/vector-icons';
-
+import Feather from 'react-native-vector-icons/Feather';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import logoImg from '../assets/logo.png';
 import { Colors } from 'react-native-paper';

@@ -1,8 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import { TextInput, StyleSheet, View, Text } from 'react-native';
 
-import { FontAwesome } from '@expo/vector-icons';
-
 const INPUT_CHANGE = 'INPUT_CHANGE';
 const INPUT_BLUR = 'INPUT_BLUR';
 
@@ -66,7 +64,7 @@ const Input = props => {
   let icon;
 
   if(props.icon){
-    icon = <FontAwesome name={props.icon} style={styles.icon} size={15} color="grey" />
+    // icon = <FontAwesome name={props.icon} style={styles.icon} size={15} color="grey" />
   }
 
   return (

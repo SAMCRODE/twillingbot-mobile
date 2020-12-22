@@ -1,5 +1,6 @@
 {
   "name": "Twilling Bot",
+  "displayName": "Twilling Bot",
   "slug": "twilling-bot-app",
   "version": "1.1.0",
   "orientation": "portrait",
