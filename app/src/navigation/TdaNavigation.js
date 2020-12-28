@@ -5,7 +5,9 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { DrawerItems } from 'react-navigation-drawer';
 import { Linking, Button, View, Text } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { Ionicons, Entypo } from '@expo/vector-icons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Entypo from 'react-native-vector-icons/Entypo';
+
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import BotsSelectScreen from '../screens/BotsList/BotsSelectScreen';
@@ -46,7 +48,8 @@ const TweetFollowTabNavigator = createBottomTabNavigator({
         navigationOptions: {
             tabBarIcon: tabInfo => {
                 return (
-                    <Ionicons name="ios-person-add" size={25} color={tabInfo.tintColor} />
+                    // <Text>icon</Text>
+                    <Ionicons name="person-add" size={25} color={tabInfo.tintColor} />
                 )
             }
         }
@@ -56,6 +59,7 @@ const TweetFollowTabNavigator = createBottomTabNavigator({
         navigationOptions: {
             tabBarIcon: tabInfo => {
                 return (
+                    // <Text>icon</Text>
                     <Entypo name="retweet" size={25} color={tabInfo.tintColor} />
                 )
             },
@@ -69,6 +73,7 @@ const TweetFollowTabNavigator = createBottomTabNavigator({
         navigationOptions: {
             tabBarIcon: tabInfo => {
                 return (
+                    // <Text>icon</Text>
                     <Ionicons name="md-heart" size={25} color={tabInfo.tintColor} />
                 )
             },
@@ -120,11 +125,12 @@ const AppNavigator = createStackNavigator({
     },
     navigationOptions: {
         drawerIcon: drawerConfig => (
-          <Ionicons
+            // <Text>icon</Text>
+            <Ionicons
             name={'md-home'}
             size={23}
             color={drawerConfig.tintColor}
-          />
+            />
         )
       },
 });
@@ -168,7 +174,7 @@ const drawerNavigator = createDrawerNavigator(
                 />
                 </View>
                 <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                <Ionicons name="logo-github" size={25} color={Colors.blueTwitter}/>
+                    <Ionicons name="logo-github" size={25} color={Colors.blueTwitter}/>
                     <Text style={{color: Colors.blueTwitter}}>@rafaelcsva @matheusvdL</Text>
                 </View>
               </View>

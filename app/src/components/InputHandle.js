@@ -3,7 +3,6 @@ import { StyleSheet, View, Text } from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
 import { useSelector } from 'react-redux';
 
-import { FontAwesome } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Colors from '../constants/Colors';
 
@@ -71,7 +70,7 @@ const InputHandle = props => {
   let icon;
 
   if(props.icon){
-    icon = <FontAwesome name={props.icon} style={styles.icon} size={15} color="grey" />
+    // icon = <FontAwesome name={props.icon} style={styles.icon} size={15} color="grey" />
   }
 
   const findHandle = (query) => {
