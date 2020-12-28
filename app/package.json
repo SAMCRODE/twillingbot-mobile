@@ -1,0 +1,42 @@
+{
+  "scripts": {
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
+  },
+  "dependencies": {
+    "@react-native-community/masked-view": "0.1.10",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-native": "~0.63.3",
+    "react-native-autocomplete-input": "^4.2.0",
+    "react-native-gesture-handler": "~1.7.0",
+    "react-native-paper": "^4.2.0",
+    "react-native-reanimated": "^1.13.1",
+    "react-native-safe-area-context": "3.1.4",
+    "react-native-screens": "~2.10.1",
+    "react-native-unimodules": "~0.11.0",
+    "react-native-vector-icons": "^7.1.0",
+    "react-native-web": "^0.13.14",
+    "react-navigation": "^4.4.1",
+    "react-navigation-drawer": "^2.5.2",
+    "react-navigation-header-buttons": "^6.0.0",
+    "react-navigation-stack": "^2.8.3",
+    "react-navigation-tabs": "^2.9.1",
+    "react-redux": "^7.2.1",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "~7.9.0",
+    "babel-jest": "~25.2.6",
+    "jest": "~25.2.6",
+    "metro-react-native-babel-preset": "^0.59.0",
+    "react-test-renderer": "~16.13.1"
+  },
+  "private": true,
+  "name": "app",
+  "version": "1.0.0"
+}
