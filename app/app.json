@@ -1,0 +1,31 @@
+{
+  "name": "Twilling Bot",
+  "displayName": "Twilling Bot",
+  "slug": "twilling-bot-app",
+  "version": "1.1.0",
+  "orientation": "portrait",
+  "icon": "./assets/bot.png",
+  "splash": {
+    "image": "./assets/splash.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#ffffff"
+  },
+  "updates": {
+    "fallbackToCacheTimeout": 0
+  },
+  "assetBundlePatterns": [
+    "**/*"
+  ],
+  "ios": {
+    "supportsTablet": true,
+    "bundleIdentifier": "com.rafaelcsva.twilling-bot-app"
+  },
+  "web": {
+    "favicon": "./assets/favicon.png"
+  },
+  "android": {
+    "package": "br.com.csbot.twilling_bot",
+    "versionCode": 3,
+    "permissions": []
+  }
+}
