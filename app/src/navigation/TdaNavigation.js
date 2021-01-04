@@ -154,7 +154,7 @@ const drawerNavigator = createDrawerNavigator(
         Initial: {
             screen: AppNavigator,
             navigationOptions: {
-                drawerLabel: i18n.t('Begin')
+                drawerLabel: 'Inicio'
             }
         }
     },

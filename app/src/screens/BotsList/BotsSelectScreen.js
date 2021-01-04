@@ -12,7 +12,6 @@ import Feather from 'react-native-vector-icons/Feather';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import logoImg from '../assets/logo.png';
 import { Colors } from 'react-native-paper';
-import i18n from 'i18n-js';
 
 import * as botActions from '../../store/actions/bot';
 import * as userActions from '../../store/actions/user';
@@ -85,7 +84,7 @@ const BotsSelectScreen = props => {
     botSelected = botSelected.map((bot) => bot.id);
     
     if(botSelected.length === 0){
-      Alert.alert('Pempp!', i18n.t('MissBots'), [{ text: 'Ok' }]);
+      Alert.alert('Pempp!', 'Escolha ao menos um bot', [{ text: 'Ok' }]);
       return;
     }
 
@@ -163,7 +162,7 @@ const BotsSelectScreen = props => {
         </TouchableOpacity>
 
         <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] } onPress={() => {props.navigation.pop()} }>
-          <Text style={styles.buttonText}>{i18n.t('back')}</Text>
+          <Text style={styles.buttonText}>Voltar</Text>
         </TouchableOpacity>
       </View>
 

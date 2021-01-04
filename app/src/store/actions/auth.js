@@ -1,6 +1,5 @@
 import Config from '../../config/api';
 import { AsyncStorage } from 'react-native';
-import i18n from 'i18n-js';
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const LOGOUT = 'LOGOUT';
 
@@ -60,7 +59,7 @@ export const signin = (user) => {
         if (!response.ok) {
             const errorResData = await response.json();
             
-                throw new Error(i18n.t(errorResData.code));
+            throw new Error(errorResData.code);
         }
 
         const resData = await response.json();

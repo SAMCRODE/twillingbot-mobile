@@ -62,7 +62,7 @@ const FollowScreen = props => {
               data: formState.inputValues.handle }); 
             }}
             disabled={!formState.formIsValid}>
-              <Text style={styles.buttonText}>{i18n.t('follow')}</Text>
+              <Text style={styles.buttonText}>{'Seguir'}</Text>
             </TouchableOpacity>
           </View>
         </View>
