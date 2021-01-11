@@ -13,25 +13,21 @@ import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import logoImg from '../assets/logo.png';
 import { Colors } from 'react-native-paper';
 
+import UserConfirmScreen from './UserConfirm/UserConfirmScreen';
 import * as botActions from '../../store/actions/bot';
 import * as userActions from '../../store/actions/user';
 
-class BotItem{
-  constructor(id, handle, name, profileImage, followersCount){
-    this.id = id;
-    this.handle = handle;
-    this.name = name;
-    this.selected = false;
-    this.profileImage = profileImage;
-    this.followersCount = followersCount;
-  }
-};
-
 const BotsSelectScreen = props => {
   const [isLoading, setIsLoading] = useState(true);
+  const [confirmedUser, setConfirmedUser] = useState(false);
   const [error, setError] = useState();
   const [botList, setBotList] = useState();
   const dispatch = useDispatch();
+
+  const confirmUser = () => {
+    console.log('usuari confirmado')
+    setConfirmedUser(true);
+  }
 
   const bfunction = props.navigation.getParam('function');
   const tdata = props.navigation.getParam('data');
@@ -113,8 +109,15 @@ const BotsSelectScreen = props => {
     }
   }
 
+  if (!confirmedUser) {
+    return (
+    <UserConfirmScreen
+    confirmUser={confirmUser}
+    />);
+  }
+
   if(isLoading){
-    return ( 
+    return (
       <View style={styles.contentCenter}>
         <ActivityIndicator size="large" color={Colors.blue200} />
       </View>);
@@ -133,10 +136,8 @@ const BotsSelectScreen = props => {
         data={botList}
         keyExtractor={botItem => botItem.handle}
         renderItem={(bot) => {
-          // console.log(bot);
-          // console.log('atualizando!\n');
           bot = bot.item;
-          
+
           return(
           <TouchableOpacity onPress={toggle.bind(this, bot.id)}>
             <View style={styles.listContainer}>
@@ -165,28 +166,9 @@ const BotsSelectScreen = props => {
           <Text style={styles.buttonText}>Voltar</Text>
         </TouchableOpacity>
       </View>
-
-
-
     </View>
   </View>
   );
 };
-
-// BotsSelectScreen.navigationOptions = navData => {
-//   return {
-//     headerTitle: 'All Products',
-//     headerLeft: (
-//       <HeaderButtons HeaderButtonComponent={HeaderButton}>
-//         <Item
-//           iconName={ 'md-menu'}
-//           onPress={() => {
-//             navData.navigation.toggleDrawer();
-//           }}
-//         />
-//       </HeaderButtons>
-//     ),
-//   };
-// }
 
 export default BotsSelectScreen;
