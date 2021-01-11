@@ -32,6 +32,9 @@
   "devDependencies": {
     "@babel/core": "~7.9.0",
     "babel-jest": "~25.2.6",
+    "eslint": "^7.17.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-react": "^7.22.0",
     "jest": "~25.2.6",
     "metro-react-native-babel-preset": "^0.59.0",
     "react-test-renderer": "~16.13.1"
