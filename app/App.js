@@ -1,11 +1,11 @@
 import React from 'react';
-import { 
+import {
   StyleSheet,
   SafeAreaView,
 } from 'react-native';
-import { enableScreens } from 'react-native-screens';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
+import {enableScreens} from 'react-native-screens';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 
 import authReducer from './src/store/reducers/auth';
@@ -14,13 +14,14 @@ import NavigationContainer from './src/navigation/NavigationContainer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  user: userReducer
+  user: userReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
-enableScreens();//Make sure all UI use native resources
+enableScreens();// Make sure all UI use native resources
 
+// eslint-disable-next-line require-jsdoc
 export default function App() {
   return (
     <Provider store={store}>
@@ -34,6 +35,6 @@ export default function App() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: '#fff'
-  }
+    backgroundColor: '#fff',
+  },
 });
