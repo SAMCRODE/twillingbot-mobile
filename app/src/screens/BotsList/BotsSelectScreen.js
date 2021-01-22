@@ -109,18 +109,18 @@ const BotsSelectScreen = props => {
     }
   }
 
+  if (isLoading) {
+    return (
+      <View style={styles.contentCenter}>
+        <ActivityIndicator size="large" color={Colors.blue200} />
+      </View>);
+  }
+
   if (!confirmedUser) {
     return (
     <UserConfirmScreen
     confirmUser={confirmUser}
     />);
-  }
-
-  if(isLoading){
-    return (
-      <View style={styles.contentCenter}>
-        <ActivityIndicator size="large" color={Colors.blue200} />
-      </View>);
   }
 
   return (

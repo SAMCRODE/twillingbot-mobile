@@ -4,7 +4,7 @@ export default StyleSheet.create({
   contentCenter: {
     flex: 1,
     backgroundColor: '#F5F8FA',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   screen: {
     flex: 1,
@@ -17,25 +17,25 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 50,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
-  imagem:{
+  imagem: {
     marginBottom: 10,
     width: 100,
     height: 100,
     borderRadius: 50,
   },
-  nameProfile:{
+  nameProfile: {
     fontSize: 16,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
-  icon:{
-    marginLeft: 45
+  icon: {
+    marginLeft: 45,
   },
-  names:{
+  names: {
     flex: 2,
     flexDirection: 'column',
-    marginLeft: 5
+    marginLeft: 5,
   },
   listContainer: {
     margin: 5,
@@ -43,22 +43,22 @@ export default StyleSheet.create({
     padding: 10,
     width: Dimensions.get('window').width * 0.83,
     justifyContent: 'space-between',
-    flexDirection: "row",
+    flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#FFF',
-    borderRadius: 50
+    borderRadius: 50,
   },
-  list:{
+  list: {
     width: Dimensions.get('window').width * 0.85,
   },
-  profile:{
+  profile: {
     height: 65,
     width: 65,
-    borderRadius: 100
+    borderRadius: 100,
   },
-  actions:{
+  actions: {
     display: 'flex',
-    marginTop:15
+    marginTop: 15,
   },
   button: {
     width: 195,
@@ -66,12 +66,12 @@ export default StyleSheet.create({
     marginTop: 10,
     backgroundColor: '#1DA1F2',
     borderRadius: 50,
-    justifyContent: "center",
-    alignItems: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
 
   },
-  buttonText:{
+  buttonText: {
     color: '#fff',
-    fontWeight: 'bold'
-  }
-})
+    fontWeight: 'bold',
+  },
+});

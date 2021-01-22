@@ -1,14 +1,15 @@
+/* eslint-disable guard-for-in */
 export const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
 const inputReducer = (state, action) => {
   if (action.type === FORM_INPUT_UPDATE) {
     const updatedValues = {
       ...state.inputValues,
-      [action.input]: action.value
+      [action.input]: action.value,
     };
     const updatedValidities = {
       ...state.inputValidities,
-      [action.input]: action.isValid
+      [action.input]: action.isValid,
     };
     let updatedFormIsValid = true;
     // console.log(updatedValidities);
@@ -18,7 +19,7 @@ const inputReducer = (state, action) => {
     return {
       formIsValid: updatedFormIsValid,
       inputValidities: updatedValidities,
-      inputValues: updatedValues
+      inputValues: updatedValues,
     };
   }
   return state;
