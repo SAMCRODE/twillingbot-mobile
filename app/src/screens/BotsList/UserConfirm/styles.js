@@ -25,13 +25,20 @@ export default StyleSheet.create({
     height: 100,
     borderRadius: 50,
   },
-  status: {
+  user: {
     borderRadius: 10,
     backgroundColor: '#ffffff',
   },
+  status: {
+    borderRadius: 10,
+    backgroundColor: '#FEFFEB',
+  },
+  statusText: {
+    padding: 5,
+  },
   statusHeader: {
     backgroundColor: '#282C34',
-    color: '#ffffff',
+    padding: 5,
   },
   nameProfile: {
     fontSize: 16,
