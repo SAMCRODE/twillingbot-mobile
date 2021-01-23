@@ -32,9 +32,15 @@ const UserConfirmScreen = (props) => {
             <Text>@{props.user.handle}</Text>
 
             <Text>{props.user.name}</Text>
-            {/* <Text>{props.user.followers_count} Followers</Text> */}
           </View>
         </View>
+        {props.user.status && <View style={styles.status}>
+          <View style={styles.statusHeader}>
+            <Text style={{color: '#ffffff'}}>Último tweet:</Text>
+          </View>
+          <Text>{props.user.status.text}</Text>
+        </View>
+        }
 
         <View style={styles.actions}>
           <TouchableOpacity

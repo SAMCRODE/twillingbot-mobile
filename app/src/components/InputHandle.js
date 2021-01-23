@@ -16,12 +16,12 @@ const inputReducer = (state, action) => {
         ...state,
         value: action.value,
         isValid: action.isValid,
-        touched: true
+        touched: true,
       };
     case INPUT_BLUR:
       return {
         ...state,
-        touched: true
+        touched: true,
       };
     default:
       return state;
