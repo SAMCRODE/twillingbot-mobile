@@ -3,7 +3,6 @@ import Config from '../../config/api';
 export const confirmHandle = (handle) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
-    console.log(Config.apiurl);
     const response = await fetch(
         `${Config.apiurl}/handle/confirm`,
         {

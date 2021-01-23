@@ -20,7 +20,9 @@ const UserConfirmScreen = (props) => {
     <View style={styles.screen}>
       <View style={styles.container}>
         <Image style={styles.imagem} source={logoImg}/>
-        <TouchableOpacity style={styles.user}>
+        <TouchableOpacity
+          onPress={confirmUser.bind(this)}
+          style={styles.user}>
           <View style={styles.userHeader}>
             <Text style={{color: '#ffffff', padding: 5}}>
               Confirme o usuário</Text>

@@ -11,6 +11,10 @@ import ReduxThunk from 'redux-thunk';
 import authReducer from './src/store/reducers/auth';
 import userReducer from './src/store/reducers/user';
 import NavigationContainer from './src/navigation/NavigationContainer';
+import {UIManager} from 'react-native';
+
+UIManager.setLayoutAnimationEnabledExperimental &&
+  UIManager.setLayoutAnimationEnabledExperimental(true);
 
 const rootReducer = combineReducers({
   auth: authReducer,
