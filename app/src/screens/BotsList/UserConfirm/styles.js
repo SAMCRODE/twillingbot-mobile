@@ -25,6 +25,14 @@ export default StyleSheet.create({
     height: 100,
     borderRadius: 50,
   },
+  status: {
+    borderRadius: 10,
+    backgroundColor: '#ffffff',
+  },
+  statusHeader: {
+    backgroundColor: '#282C34',
+    color: '#ffffff',
+  },
   nameProfile: {
     fontSize: 16,
     fontWeight: 'bold',
