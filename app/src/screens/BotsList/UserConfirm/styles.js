@@ -14,12 +14,15 @@ export default StyleSheet.create({
     flex: 1,
     width: Dimensions.get('window').width,
     marginVertical: Dimensions.get('window').height / 60,
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     alignItems: 'center',
     padding: 50,
     overflow: 'hidden',
   },
   imagem: {
+    marginBottom: 10,
+  },
+  userPhoto: {
     marginBottom: 10,
     width: 100,
     height: 100,

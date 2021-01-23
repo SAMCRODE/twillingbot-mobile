@@ -5,6 +5,7 @@ import {View,
 } from 'react-native';
 import styles from './styles';
 
+import logoImg from '../../assets/logo.png';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const UserConfirmScreen = (props) => {
@@ -18,7 +19,8 @@ const UserConfirmScreen = (props) => {
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
-        <View style={styles.user}>
+        <Image style={styles.imagem} source={logoImg}/>
+        <TouchableOpacity style={styles.user}>
           <View style={styles.userHeader}>
             <Text style={{color: '#ffffff', padding: 5}}>
               Confirme o usuário</Text>
@@ -26,7 +28,7 @@ const UserConfirmScreen = (props) => {
           <View style={{flexDirection: 'row', padding: 10, width: '80%'}}>
             <View>
               <Image
-                style={styles.imagem}
+                style={styles.userPhoto}
                 source={{uri: props.user.profile_image_url}}/>
             </View>
             <View style={{margin: 10}}>
@@ -35,14 +37,15 @@ const UserConfirmScreen = (props) => {
               <Text>{props.user.description}</Text>
             </View>
           </View>
-          {props.user.status && <View style={styles.status}>
+          {props.user.status &&
+          <View style={styles.status}>
             <View style={styles.statusHeader}>
               <Text style={{color: '#ffffff', padding: 5}}>Último tweet:</Text>
             </View>
             <Text style={styles.statusText}>{props.user.status.text}</Text>
           </View>
           }
-        </View>
+        </TouchableOpacity>
 
         <View style={styles.actions}>
           <TouchableOpacity
