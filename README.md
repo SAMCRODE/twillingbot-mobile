@@ -20,4 +20,4 @@ This app depends use the [backend](https://github.com/rafaelcsva/twilling-backen
 
 ## How to contribute
 
-You can contribute with this project opening an issue, on solving one as well with a pull request.
+You can contribute with this project opening or solving an issue with a pull request.
