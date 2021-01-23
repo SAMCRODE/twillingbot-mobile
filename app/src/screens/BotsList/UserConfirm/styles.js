@@ -14,7 +14,7 @@ export default StyleSheet.create({
     flex: 1,
     width: Dimensions.get('window').width,
     marginVertical: Dimensions.get('window').height / 60,
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     padding: 50,
     overflow: 'hidden',
@@ -28,6 +28,15 @@ export default StyleSheet.create({
   user: {
     borderRadius: 10,
     backgroundColor: '#ffffff',
+    justifyContent: 'flex-end',
+    display: 'flex',
+  },
+  userHeader: {
+    borderTopEndRadius: 10,
+    borderTopStartRadius: 10,
+    backgroundColor: '#282C34',
+    padding: 5,
+    textAlign: 'center',
   },
   status: {
     borderRadius: 10,

@@ -18,21 +18,21 @@ const UserConfirmScreen = (props) => {
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
-        <View>
-          <Text style={{fontSize: 20}}>Confirme o usuário</Text>
-        </View>
         <View style={styles.user}>
-          <View style={{flexDirection: 'row', padding: 10}}>
+          <View style={styles.userHeader}>
+            <Text style={{color: '#ffffff', padding: 5}}>
+              Confirme o usuário</Text>
+          </View>
+          <View style={{flexDirection: 'row', padding: 10, width: '80%'}}>
             <View>
               <Image
                 style={styles.imagem}
                 source={{uri: props.user.profile_image_url}}/>
-
             </View>
             <View style={{margin: 10}}>
               <Text>@{props.user.handle}</Text>
-
               <Text>{props.user.name}</Text>
+              <Text>{props.user.description}</Text>
             </View>
           </View>
           {props.user.status && <View style={styles.status}>
