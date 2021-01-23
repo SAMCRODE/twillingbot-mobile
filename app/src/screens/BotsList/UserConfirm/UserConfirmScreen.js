@@ -1,5 +1,3 @@
-/* eslint-disable no-invalid-this */
-/* eslint-disable react/prop-types */
 import React from 'react';
 import {View,
   Image,
@@ -13,27 +11,30 @@ const UserConfirmScreen = (props) => {
   const confirmUser = () => {
     props.confirmUser();
   };
+  const back = () => {
+    props.back();
+  };
 
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
+        <View>
+          <Text style={{fontSize: 20}}>Confirme o usuário</Text>
+        </View>
         <View style={{flexDirection: 'row', padding: 10}}>
           <View>
             <Image
               style={styles.imagem}
-              source={{uri: 'https://pbs.twimg.com/profile_images/1246847704556359681/HP8O5_fB_400x400.jpg'}}/>
+              source={{uri: props.user.profile_image_url}}/>
 
           </View>
           <View style={{margin: 10}}>
-            <Text>@Menotti</Text>
+            <Text>@{props.user.handle}</Text>
 
-            <Text>Cesar Menotti</Text>
-
-            <Text>1.1M Followers</Text>
+            <Text>{props.user.name}</Text>
+            {/* <Text>{props.user.followers_count} Followers</Text> */}
           </View>
         </View>
-
-        <Text>Esse é realmente o usuário ?</Text>
 
         <View style={styles.actions}>
           <TouchableOpacity
@@ -45,9 +46,8 @@ const UserConfirmScreen = (props) => {
 
           <TouchableOpacity
             style={ [styles.button, {backgroundColor: '#657786'}] }
-            onPress={() => {
-              props.navigation.pop();
-            } }>
+            onPress={back.bind(this)}
+          >
             <Text style={styles.buttonText}>Voltar</Text>
           </TouchableOpacity>
         </View>

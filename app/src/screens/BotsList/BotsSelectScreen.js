@@ -15,6 +15,7 @@ import { Colors } from 'react-native-paper';
 
 import UserConfirmScreen from './UserConfirm/UserConfirmScreen';
 import * as botActions from '../../store/actions/bot';
+import * as handleActions from '../../store/actions/handle';
 import * as userActions from '../../store/actions/user';
 
 const BotsSelectScreen = props => {
@@ -22,44 +23,61 @@ const BotsSelectScreen = props => {
   const [confirmedUser, setConfirmedUser] = useState(false);
   const [error, setError] = useState();
   const [botList, setBotList] = useState();
+  const [userDetail, setUserDetail] = useState({});
   const dispatch = useDispatch();
 
-  const confirmUser = () => {
-    console.log('usuari confirmado')
-    setConfirmedUser(true);
-  }
-
   const bfunction = props.navigation.getParam('function');
-  const tdata = props.navigation.getParam('data');
+  const thandle = props.navigation.getParam('data');
 
   const loadBots = useCallback(async () => {
-    // console.log('aqui!\n');
     setError(null);
     setIsLoading(true);
     try {
       const res = await dispatch(botActions.getBotList());
-      // console.log(res);
+
       const bots = res.map((bot) => {return {...bot, selected: true}});
       setBotList(bots);
-      setIsLoading(false);
     } catch (err) {
-      // console.log(err.message.code, 'err a');
       setIsLoading(false);
       setError(err.message);
     }
-    
   }, [dispatch, setIsLoading, setError]);
 
-  useEffect(() => {
+  const confirmHandle = useCallback(async () => {
+    setError(null);
     setIsLoading(true);
+    try {
+      const res = await dispatch(handleActions.confirmHandle(thandle));
+
+      setUserDetail(res);
+
+      setIsLoading(false);
+    } catch (err) {
+      setError(err.message);
+    }
+  }, [dispatch, setIsLoading, setError]);
+
+  const confirmUser = () => {
+    setIsLoading(true);
+    setConfirmedUser(true);
     loadBots().then(() => {
       setIsLoading(false);
     });
-  }, [dispatch, loadBots]);
+  }
+
+  const back = () => {
+    props.navigation.pop()
+  }
+
+  useEffect(() => {
+    setIsLoading(true);
+    confirmHandle();
+  }, [dispatch, confirmHandle]);
 
   useEffect(() => {
     if (error) {
-      Alert.alert('Pempp!', error, [{ text: 'Ok' }]);
+      Alert.alert('Pempp!', error, [{ text: 'Ok',
+      onPress: () => props.navigation.pop() }]);
     }
   }, [error]);
 
@@ -91,20 +109,19 @@ const BotsSelectScreen = props => {
       
       switch(bfunction){
         case 'follow':
-          res = await dispatch(botActions.follow(botSelected, tdata));
+          res = await dispatch(botActions.follow(botSelected, thandle));
           break;
         case 'like':
-          res = await dispatch(botActions.like(botSelected, tdata));
+          res = await dispatch(botActions.like(botSelected, thandle));
           break;
         case 'retweet':
-          res = await dispatch(botActions.retweet(botSelected, tdata));
+          res = await dispatch(botActions.retweet(botSelected, thandle));
       }
 
-      dispatch(userActions.new_handle(tdata));
+      dispatch(userActions.new_handle(thandle));
       setIsLoading(false);
       props.navigation.pop();
     }catch(e){
-      setIsLoading(false);
       setError(e.message);
     }
   }
@@ -119,6 +136,8 @@ const BotsSelectScreen = props => {
   if (!confirmedUser) {
     return (
     <UserConfirmScreen
+    user={userDetail}
+    back={back}
     confirmUser={confirmUser}
     />);
   }
@@ -128,7 +147,7 @@ const BotsSelectScreen = props => {
     <View style={styles.container}>
       <Image style={styles.imagem} source={logoImg}/>
       <Text>Escolha um ou mais bots 
-        para realizar a ação {bfunction}>{tdata}</Text>
+        para realizar a ação {bfunction}>{thandle}</Text>
 
       <FlatList 
         style={styles.list}
@@ -162,7 +181,8 @@ const BotsSelectScreen = props => {
           <Text style={styles.buttonText}>Prosseguir</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] } onPress={() => {props.navigation.pop()} }>
+        <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] }
+        onPress={back.bind(this)}>
           <Text style={styles.buttonText}>Voltar</Text>
         </TouchableOpacity>
       </View>
