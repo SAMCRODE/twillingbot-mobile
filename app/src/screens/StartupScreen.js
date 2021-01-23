@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   ActivityIndicator,
   StyleSheet,
-  AsyncStorage
+  AsyncStorage,
 } from 'react-native';
-import { useDispatch } from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import Colors from '../constants/Colors';
 import * as authActions from '../store/actions/auth';
 import * as userActions from '../store/actions/user';
 
-const StartupScreen = props => {
+const StartupScreen = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,14 +22,15 @@ const StartupScreen = props => {
         return;
       }
       const transformedData = JSON.parse(userData);
-      const { token, user } = transformedData;
+      const {token, user} = transformedData;
 
       props.navigation.navigate('App');
       const handles = JSON.parse(await AsyncStorage.getItem('handles'));
 
       dispatch(authActions.authenticate(token, user));
-      if(handles !== undefined && handles !== null)
+      if (handles !== undefined && handles !== null) {
         dispatch(userActions.init(handles));
+      }
     };
 
     tryLogin();
@@ -46,8 +47,8 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });
 
 export default StartupScreen;
