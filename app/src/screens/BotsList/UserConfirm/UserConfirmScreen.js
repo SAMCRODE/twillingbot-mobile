@@ -21,26 +21,28 @@ const UserConfirmScreen = (props) => {
         <View>
           <Text style={{fontSize: 20}}>Confirme o usuário</Text>
         </View>
-        <View style={{flexDirection: 'row', padding: 10}}>
-          <View>
-            <Image
-              style={styles.imagem}
-              source={{uri: props.user.profile_image_url}}/>
+        <View style={styles.user}>
+          <View style={{flexDirection: 'row', padding: 10}}>
+            <View>
+              <Image
+                style={styles.imagem}
+                source={{uri: props.user.profile_image_url}}/>
 
-          </View>
-          <View style={{margin: 10}}>
-            <Text>@{props.user.handle}</Text>
+            </View>
+            <View style={{margin: 10}}>
+              <Text>@{props.user.handle}</Text>
 
-            <Text>{props.user.name}</Text>
+              <Text>{props.user.name}</Text>
+            </View>
           </View>
-        </View>
-        {props.user.status && <View style={styles.status}>
-          <View style={styles.statusHeader}>
-            <Text style={{color: '#ffffff'}}>Último tweet:</Text>
+          {props.user.status && <View style={styles.status}>
+            <View style={styles.statusHeader}>
+              <Text style={{color: '#ffffff', padding: 5}}>Último tweet:</Text>
+            </View>
+            <Text style={styles.statusText}>{props.user.status.text}</Text>
           </View>
-          <Text>{props.user.status.text}</Text>
+          }
         </View>
-        }
 
         <View style={styles.actions}>
           <TouchableOpacity
