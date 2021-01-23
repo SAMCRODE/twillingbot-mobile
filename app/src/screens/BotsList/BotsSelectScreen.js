@@ -146,8 +146,10 @@ const BotsSelectScreen = props => {
     <View style={styles.screen}> 
     <View style={styles.container}>
       <Image style={styles.imagem} source={logoImg}/>
-      <Text>Escolha um ou mais bots 
-        para realizar a ação {bfunction}>{thandle}</Text>
+      <View style={styles.headerList}>
+        <Text style={{color: '#ffffff'}}>Escolha um ou mais bots 
+          para realizar a ação {bfunction}>{thandle}</Text>
+      </View>
 
       <FlatList 
         style={styles.list}

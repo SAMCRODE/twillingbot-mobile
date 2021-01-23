@@ -21,6 +21,9 @@ export default StyleSheet.create({
   },
   imagem: {
     marginBottom: 10,
+  },
+  userPhoto: {
+    marginBottom: 10,
     width: 100,
     height: 100,
     borderRadius: 50,
@@ -28,6 +31,15 @@ export default StyleSheet.create({
   user: {
     borderRadius: 10,
     backgroundColor: '#ffffff',
+    justifyContent: 'flex-end',
+    display: 'flex',
+  },
+  userHeader: {
+    borderTopEndRadius: 10,
+    borderTopStartRadius: 10,
+    backgroundColor: '#282C34',
+    padding: 5,
+    textAlign: 'center',
   },
   status: {
     borderRadius: 10,
