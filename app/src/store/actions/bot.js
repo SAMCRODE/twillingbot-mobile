@@ -18,7 +18,7 @@ export const getBotList = () => {
       const resData = await response.json();
 
       if (!response.ok) {
-        console.log(resData);
+        // console.log(resData);
         throw new Error(resData);
       }
 

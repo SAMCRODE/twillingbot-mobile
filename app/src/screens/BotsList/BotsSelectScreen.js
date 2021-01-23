@@ -14,6 +14,8 @@ import logoImg from '../assets/logo.png';
 import { Colors } from 'react-native-paper';
 
 import UserConfirmScreen from './UserConfirm/UserConfirmScreen';
+import ResultActionScreen from './ResultAction/ResultAction';
+
 import * as botActions from '../../store/actions/bot';
 import * as handleActions from '../../store/actions/handle';
 import * as userActions from '../../store/actions/user';
@@ -24,6 +26,8 @@ const BotsSelectScreen = props => {
   const [error, setError] = useState();
   const [botList, setBotList] = useState();
   const [userDetail, setUserDetail] = useState({});
+  const [actioned, setActioned] = useState(false);
+  const [response, setResponse] = useState({});
   const dispatch = useDispatch();
 
   const bfunction = props.navigation.getParam('function');
@@ -120,7 +124,8 @@ const BotsSelectScreen = props => {
 
       dispatch(userActions.new_handle(thandle));
       setIsLoading(false);
-      props.navigation.pop();
+      setResponse(res);
+      setActioned(true);
     }catch(e){
       setError(e.message);
     }
@@ -140,6 +145,14 @@ const BotsSelectScreen = props => {
     back={back}
     confirmUser={confirmUser}
     />);
+  }
+
+  if (actioned) {
+    return (
+      <ResultActionScreen
+      performed={response.performed}
+      back={back}
+      />);
   }
 
   return (
