@@ -4,7 +4,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 
 import {DrawerItems} from 'react-navigation-drawer';
-import {Linking, Button, View, Text, Image} from 'react-native';
+import {Linking, Button, View, Text, Image, Alert} from 'react-native';
 import {useDispatch} from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -25,6 +25,7 @@ import CodeConfirmScreen from '../screens/CodeConfirm/CodeConfirmScreen';
 import NewPassScreen from '../screens/NewPassword/NewPassScreen';
 import RetweetScreen from '../screens/Retweet/RetweetScreen';
 import LikeScreen from '../screens/LikeScreen/LikeScreen';
+import ContributeScreen from '../screens/Contribute/ContributeScreen';
 
 const FollowNavigator = createStackNavigator(
     {
@@ -151,12 +152,36 @@ const OpenURLButton = ({url, title}) => {
   return <Button title={title} onPress={handlePress} />;
 };
 
+const ContributeNavigator = createStackNavigator({
+  Contribute: {
+    screen: ContributeScreen,
+  },
+}, {
+  defaultNavigationOptions: {
+    cardStyle: {backgroundColor: '#FFFFFF'},
+  },
+});
+
 const drawerNavigator = createDrawerNavigator(
     {
       Initial: {
         screen: AppNavigator,
         navigationOptions: {
           drawerLabel: 'Inicio',
+        },
+      },
+      Contribute: {
+        screen: ContributeNavigator,
+        navigationOptions: {
+          drawerLabel: 'Contribua',
+          drawerIcon: (drawerConfig) => (
+            // <Text>icon</Text>
+            <Ionicons
+              name={'git-branch-outline'}
+              size={23}
+              color={drawerConfig.tintColor}
+            />
+          ),
         },
       },
     },
@@ -179,26 +204,18 @@ const drawerNavigator = createDrawerNavigator(
                 makes you stronger&quot;</Text>
               </View>
               <DrawerItems {...props} />
-              <View style={{paddingTop: 10}}>
-                <OpenURLButton url={'https://github.com/SAMCRODE/mobile'}
-                  title={'<code />'}
-                />
-              </View>
               <View style={{justifyContent: 'center', alignItems: 'center'}}>
                 <Ionicons name="code-slash"
                   size={25} color={Colors.blueTwitter}/>
               </View>
             </View>
             <View style={{flex: 1, justifyContent: 'flex-end'}}>
-
               <Button
                 title="Sair"
                 color={Colors.primary}
                 onPress={() => {
                   dispatch(authActions.logout());
-                  // props.navigation.navigate('Auth');
                 }}
-
               />
             </View>
           </View>
