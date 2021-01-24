@@ -5,4 +5,5 @@ export default {
   greenRetweet: '#24C26C',
   blueTwitter: '#1DA1F2',
   blueDark: '#282C34',
+  white: '#ffffff',
 };
