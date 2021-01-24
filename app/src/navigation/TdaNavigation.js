@@ -180,12 +180,12 @@ const drawerNavigator = createDrawerNavigator(
               </View>
               <DrawerItems {...props} />
               <View style={{paddingTop: 10}}>
-                <OpenURLButton url={'https://github.com/rafaelcsva/Twilling-Bot'}
-                  title={'<code>'}
+                <OpenURLButton url={'https://github.com/SAMCRODE/mobile'}
+                  title={'<code />'}
                 />
               </View>
               <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                <Ionicons name="logo-github"
+                <Ionicons name="code-slash"
                   size={25} color={Colors.blueTwitter}/>
               </View>
             </View>
