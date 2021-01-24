@@ -1,12 +1,15 @@
 import React, {useReducer, useCallback} from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TouchableOpacity, Alert} from 'react-native';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import styles from './styles';
 import HeaderButton from '../../components/UI/HeaderButton';
 import logoImg from '../assets/logo.png';
 import inputReducer, {FORM_INPUT_UPDATE} from '../../components/InputReducer';
 import InputHandle from '../../components/InputHandle';
+import Colors from '../../constants/Colors';
 
 const RetweetScreen = (props) => {
   const [formState, dispatchFormState] = useReducer(inputReducer, {
@@ -31,17 +34,31 @@ const RetweetScreen = (props) => {
       [dispatchFormState],
   );
 
+  const info = () => {
+    Alert.alert(
+        'Como usar',
+        'Informe no campo o @ do usuario, por exemplo: @neymarjr',
+        [{text: 'OK'}]);
+  };
+
   return (
     <View style={styles.screen}>
       <Image style={styles.imagem} source={logoImg}/>
-
-
       <View style={styles.inputContainer}>
 
-        <Text style={styles.title}>Digite o nome do usuário:</Text>
-        <Text style={styles.subtitle}
-          numberOfLines={2}>os bots irão retweetar o último
-        tweet do usuário especificado</Text>
+        <View style={styles.inputHeader}>
+          <Text style={styles.title}>Digite o nome do usuário:</Text>
+          <TouchableOpacity
+            onPress={info.bind(this)}
+            style={{backgroundColor: '#ffffff',
+              borderRadius: 10}}>
+            <Ionicons
+              name={'md-help'}
+              size={23}
+              color={Colors.blueDark}
+            />
+          </TouchableOpacity>
+        </View>
         <InputHandle
           id="handle"
           style={styles.input}
@@ -65,12 +82,8 @@ const RetweetScreen = (props) => {
               <Text style={styles.buttonText}>Retweetar</Text>
             </TouchableOpacity>
           </View>
-
         </View>
-
       </View>
-
-
     </View>
   );
 };
@@ -89,17 +102,6 @@ RetweetScreen.navigationOptions = (navData) => {
         />
       </HeaderButtons>
     ),
-    // headerRight: () => (
-    //   <HeaderButtons HeaderButtonComponent={HeaderButton}>
-    //     <Item
-    //       title="Add"
-    //       iconName={Platform.OS === 'android' ? 'md-create' : 'ios-create'}
-    //       onPress={() => {
-    //         navData.navigation.navigate('EditProduct');
-    //       }}
-    //     />
-    //   </HeaderButtons>
-    // )
   };
 };
 

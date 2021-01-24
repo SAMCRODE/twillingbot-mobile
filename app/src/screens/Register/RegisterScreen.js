@@ -123,14 +123,16 @@ const RegisterScreen = (props) => {
             onInputChange={inputChangeHandler}
             required
           />
-          {formState.inputValues.password !== formState.inputValues.confirmPassword &&
+          {formState.inputValues.password !==
+          formState.inputValues.confirmPassword &&
           <View style={styles.errorContainer}>
             <Text style={styles.errorText}>{'Senhas não são iguais'}</Text>
           </View>}
         </View>
 
         <View style={styles.actions}>
-          <View style={{opacity: (formState.formIsValid && !isLoading) ? 1.0 : 0.5}}>
+          <View style={{opacity:
+            (formState.formIsValid && !isLoading) ? 1.0 : 0.5}}>
             <TouchableOpacity
               style={styles.button}
               onPress={registerHandler}
@@ -140,7 +142,8 @@ const RegisterScreen = (props) => {
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] }
+          <TouchableOpacity
+            style={ [styles.button, {backgroundColor: '#657786'}] }
             onPress={() => {
               props.navigation.navigate({
                 routeName: 'Login'});
