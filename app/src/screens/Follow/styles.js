@@ -1,29 +1,36 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
 export default StyleSheet.create({
-  screen:{
+  screen: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5F8FA',
-    paddingTop: 27
- },
- imagem:{
-     marginBottom: 25
- },
-  title:{
-    fontSize: 15,
-    marginBottom: 5
+    paddingTop: 27,
   },
-  inputContainer:{
-    marginTop: 25
+  imagem: {
+    marginBottom: 25,
+  },
+  title: {
+    fontSize: 15,
+    marginBottom: 5,
+  },
+  inputContainer: {
+    marginTop: 25,
+    width: Dimensions.get('window').width * 0.80,
+  },
+  inputHeader: {
+    flexDirection: 'row',
+    padding: 2,
+    width: '100%',
+    justifyContent: 'space-between',
   },
   input: {
     width: Dimensions.get('window').width * 0.80,
-    maxHeight: 95
+    maxHeight: 95,
   },
-  actions:{
-    flexDirection: 'row-reverse'
+  actions: {
+    flexDirection: 'row-reverse',
   },
   buttonTweet: {
     width: 105,
@@ -32,16 +39,16 @@ export default StyleSheet.create({
     backgroundColor: '#1DA1F2',
     borderRadius: 50,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
-  buttonText:{
+  buttonText: {
     color: '#fff',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   subtitle: {
     fontSize: 15,
     marginBottom: 5,
     color: '#aaaaaa',
-    textAlign: 'left'
-  }
+    textAlign: 'left',
+  },
 });
