@@ -1,13 +1,15 @@
+/* eslint-disable react/display-name */
 import React, {useCallback} from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 
 import {DrawerItems} from 'react-navigation-drawer';
-import {Linking, Button, View, Text} from 'react-native';
+import {Linking, Button, View, Text, Image} from 'react-native';
 import {useDispatch} from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 
+import {createDrawerNavigator} from 'react-navigation-drawer';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 
 import BotsSelectScreen from '../screens/BotsList/BotsSelectScreen';
@@ -15,7 +17,7 @@ import FollowScreen from '../screens/Follow/FollowScreen';
 import LoginScreen from '../screens/Login/LoginScreen';
 import RegisterScreen from '../screens/Register/RegisterScreen';
 import Colors from '../constants/Colors';
-import {createDrawerNavigator} from 'react-navigation-drawer';
+import logoImg from '../../assets/samcrode.png';
 import StartupScreen from '../screens/StartupScreen';
 import * as authActions from '../store/actions/auth';
 import ForgotPassScreen from '../screens/ForgotPassword/ForgotPassScreen';
@@ -165,8 +167,17 @@ const drawerNavigator = createDrawerNavigator(
       contentComponent: (props) => {
         const dispatch = useDispatch();
         return (
-          <View style={{flex: 1, paddingTop: 60}}>
+          <View style={{flex: 1, paddingTop: 10}}>
             <View style={{flex: 1}}>
+              <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                <Image
+                  style={{width: '50%', height: '30%'}}
+                  source={logoImg}/>
+                <Text
+                  style={{width: '70%', textAlign: 'center', color: '#B4C1D8'}}
+                >&quot;That which doesn&apos;t compile
+                makes you stronger&quot;</Text>
+              </View>
               <DrawerItems {...props} />
               <View style={{paddingTop: 10}}>
                 <OpenURLButton url={'https://github.com/rafaelcsva/Twilling-Bot'}
@@ -174,8 +185,8 @@ const drawerNavigator = createDrawerNavigator(
                 />
               </View>
               <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                <Ionicons name="logo-github" size={25} color={Colors.blueTwitter}/>
-                <Text style={{color: Colors.blueTwitter}}>@rafaelcsva @matheusvdL</Text>
+                <Ionicons name="logo-github"
+                  size={25} color={Colors.blueTwitter}/>
               </View>
             </View>
             <View style={{flex: 1, justifyContent: 'flex-end'}}>
