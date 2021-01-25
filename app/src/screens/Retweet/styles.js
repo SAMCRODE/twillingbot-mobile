@@ -5,14 +5,14 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5F8FA',
+    backgroundColor: '#FFF',
     paddingTop: 27,
   },
   imagem: {
     marginBottom: 25,
   },
   title: {
-    fontSize: 15,
+    fontSize: 17,
     marginBottom: 5,
   },
   inputContainer: {
@@ -28,13 +28,15 @@ export default StyleSheet.create({
   input: {
     width: Dimensions.get('window').width * 0.80,
     maxHeight: 95,
+    fontSize: 20
   },
   actions: {
-    flexDirection: 'row-reverse',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   buttonTweet: {
-    width: 105,
-    height: 35,
+    width: 125,
+    height: 50,
     marginTop: 10,
     backgroundColor: '#1DA1F2',
     borderRadius: 50,
@@ -44,6 +46,7 @@ export default StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
+    fontSize: 18
   },
   subtitle: {
     fontSize: 15,

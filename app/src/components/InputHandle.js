@@ -58,7 +58,7 @@ const InputHandle = props => {
     if (props.minLength != null && text.length < props.minLength) {
       isValid = false;
     }
-    // console.log(isValid, 
+    // console.log(isValid,
     dispatch({ type: INPUT_CHANGE, value: text, isValid: isValid });
   };
 
@@ -87,19 +87,20 @@ const InputHandle = props => {
 
   return (
   <View style={styles.inputContainer}>
-    <Autocomplete 
-      {...props} 
+    <Autocomplete
+      {...props}
       data={filteredHandles}
       defaultValue={
         selectedValue
       }
       keyExtractor={(item, i) => 'key' + i}
-      containerStyle={{ ...styles.input, ...props.style }} 
+      containerStyle={{ ...styles.input, ...props.style }}
       listContainerStyle={styles.suggest}
       listStyle={styles.suggest}
       placeholder={props.placeholder}
       renderItem={({item}) => (
           <TouchableOpacity
+            style={styles.textComponent}
             onPress={() => {
                 setSelectedValue(item);
                 setFilteredHandles(handles);
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderWidth: 0,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   errorContainer: {
     marginVertical: 5
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
   },
   textItem: {
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 18,
     color: Colors.blueTwitter
   }
 });
