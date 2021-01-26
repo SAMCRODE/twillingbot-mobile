@@ -75,67 +75,71 @@ const InputHandle = props => {
 
   const findHandle = (query) => {
     if (query) {
-        const regex = new RegExp(`${query.trim()}`, 'i');
+      const regex = new RegExp(`${query.trim()}`, 'i');
 
-        setFilteredHandles(
-            handles.filter((handle) => handle.search(regex) >= 0)
-        );
+      setFilteredHandles(
+          handles.filter((handle) => handle.search(regex) >= 0)
+      );
     } else {
-        setFilteredHandles(handles);
+      setFilteredHandles(handles);
     }
   }
 
   return (
-  <View style={styles.inputContainer}>
-    <Autocomplete
-      {...props}
-      data={filteredHandles}
-      defaultValue={
-        selectedValue
-      }
-      keyExtractor={(item, i) => 'key' + i}
-      containerStyle={{ ...styles.input, ...props.style }}
-      listContainerStyle={styles.suggest}
-      listStyle={styles.suggest}
-      placeholder={props.placeholder}
-      renderItem={({item}) => (
-          <TouchableOpacity
-            style={styles.textComponent}
-            onPress={() => {
-                setSelectedValue(item);
-                setFilteredHandles(handles);
-                dispatch({ type: INPUT_CHANGE, value: item, isValid: true });
-            }}
-          >
-            <Text
-                key={Math.random()}
-                style={styles.textItem}>
-                {item}
-            </Text>
+      <View style={styles.inputContainer}>
+        <Autocomplete
+            {...props}
+            data={filteredHandles}
+            defaultValue={
+              selectedValue
+            }
+            keyExtractor={(item, i) => 'key' + i}
+            containerStyle={{ ...styles.input, ...props.style, ...styles.abc,}}
+            listContainerStyle={styles.suggest}
+            listStyle={styles.suggest}
+            placeholder={props.placeholder}
+            renderItem={({item}) => (
+                <TouchableOpacity
+                    style={styles.textComponent}
+                    onPress={() => {
+                      setSelectedValue(item);
+                      setFilteredHandles(handles);
+                      dispatch({ type: INPUT_CHANGE, value: item, isValid: true });
+                    }}
+                >
+                  <Text
+                      key={Math.random()}
+                      style={styles.textItem}>
+                    {item}
+                  </Text>
 
-          </TouchableOpacity>
-      )}
-      onChangeText={textChangeHandler}
-      onEndEditing={lostFocusHandler}
-    />
-    {!!props.showError && !inputState.isValid && inputState.touched && (
-      <View style={styles.errorContainer}>
-        <Text style={styles.errorText}>{props.errorText}</Text>
-      </View>
-    )}
-  </View>);
+                </TouchableOpacity>
+            )}
+            onChangeText={textChangeHandler}
+            onEndEditing={lostFocusHandler}
+        />
+        {!!props.showError && !inputState.isValid && inputState.touched && (
+            <View style={styles.errorContainer}>
+              <Text style={styles.errorText}>{props.errorText}</Text>
+            </View>
+        )}
+      </View>);
 };
 
 const styles = StyleSheet.create({
+  abc: {
+    alignContent: 'space-between',
+
+  },
   suggest: {
     padding: 0,
     margin: 0,
     width: '100%',
     backgroundColor: '#ffffff',
     borderWidth: 0,
+
   },
   input: {
-    height: 40,
     borderBottomColor: '#ffffff',
     width: '100%',
     height: '100%',

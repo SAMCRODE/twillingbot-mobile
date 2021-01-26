@@ -5,11 +5,17 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFF',
     paddingTop: 27,
   },
+  screenComponent: {
+    width:"100%",
+    height: "105%",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFF',
+  },
   imagem: {
-    marginBottom: 25,
+    marginBottom: 10,
   },
   title: {
     fontSize: 17,
