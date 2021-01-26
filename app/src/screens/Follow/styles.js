@@ -34,7 +34,7 @@ export default StyleSheet.create({
   input: {
     width: Dimensions.get('window').width * 0.80,
     maxHeight: 95,
-    fontSize: 20
+    fontSize: 20,
   },
   actions: {
     justifyContent: 'center',
@@ -53,7 +53,7 @@ export default StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 18
+    fontSize: 18,
   },
   subtitle: {
     fontSize: 15,
