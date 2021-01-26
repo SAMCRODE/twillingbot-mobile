@@ -40,18 +40,22 @@ const FollowScreen = (props) => {
         'Informe no campo o @ do usuario, por exemplo: @neymarjr',
         [{text: 'OK'}]);
   };
-  const [offset] = useState(new Animated.ValueXY({x:0, y:80}));
+  const [offset] = useState(new Animated.ValueXY({x: 0, y: 80}));
   const [opacity] = useState(new Animated.Value(0));
   const [logo] = useState(new Animated.ValueXY({x: 150, y: 125}));
 
   useEffect(()=> {
-    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
-    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+    Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+    Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+    return () => {
+      Keyboard.removeListener('keyboardDidShow', keyboardDidShow);
+      Keyboard.removeListener('keyboardDidHide', keyboardDidHide);
+    },
 
     Animated.parallel([
       Animated.spring(offset.y, {
         toValue: 0,
-        speed:4,
+        speed: 4,
         bounciness: 30,
 
       }),
@@ -61,7 +65,7 @@ const FollowScreen = (props) => {
       }),
 
     ]).start();
-  }, []);
+  }, [Keyboard]);
   function keyboardDidShow() {
     Animated.parallel([
       Animated.timing(logo.x, {
@@ -97,9 +101,9 @@ const FollowScreen = (props) => {
             {
               opacity: opacity,
               transform: [
-                { translateY: offset.y }
-              ]
-            }
+                {translateY: offset.y},
+              ],
+            },
           ]}
         >
           <View style={styles.inputHeader}>

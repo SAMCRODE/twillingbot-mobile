@@ -41,18 +41,22 @@ const LikeScreen = (props) => {
         [{text: 'OK'}]);
   };
 
-  const [offset] = useState(new Animated.ValueXY({x:0, y:80}));
+  const [offset] = useState(new Animated.ValueXY({x: 0, y: 80}));
   const [opacity] = useState(new Animated.Value(0));
   const [logo] = useState(new Animated.ValueXY({x: 150, y: 125}));
 
   useEffect(()=> {
-    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
-    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+    Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+    Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+    return () => {
+      Keyboard.removeListener('keyboardDidShow', keyboardDidShow);
+      Keyboard.removeListener('keyboardDidHide', keyboardDidHide);
+    },
 
     Animated.parallel([
       Animated.spring(offset.y, {
         toValue: 0,
-        speed:4,
+        speed: 4,
         bounciness: 30,
 
       }),
@@ -62,7 +66,7 @@ const LikeScreen = (props) => {
       }),
 
     ]).start();
-  }, []);
+  }, [Keyboard]);
   function keyboardDidShow() {
     Animated.parallel([
       Animated.timing(logo.x, {
@@ -88,7 +92,7 @@ const LikeScreen = (props) => {
     ]).start();
   }
   return (
-      <TouchableWithoutFeedback style={styles.screen} onPress={() => Keyboard.dismiss()}>
+    <TouchableWithoutFeedback style={styles.screen} onPress={() => Keyboard.dismiss()}>
       <View style={styles.screenComponent}>
         <Animated.Image style={{width: logo.x, height: logo.y, marginBottom: 10}} source={logoImg}/>
         <Animated.View
@@ -97,9 +101,9 @@ const LikeScreen = (props) => {
             {
               opacity: opacity,
               transform: [
-                { translateY: offset.y }
-              ]
-            }
+                {translateY: offset.y},
+              ],
+            },
           ]}
         >
 

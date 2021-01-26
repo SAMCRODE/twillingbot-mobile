@@ -1,11 +1,12 @@
 import React, {useReducer, useCallback, useState, useEffect} from 'react';
-import {View,
-  Image,
+import {
+  View,
   Text,
   Alert,
   ActivityIndicator,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  Animated,
 } from 'react-native';
 import styles from './styles';
 
@@ -19,6 +20,8 @@ import {useDispatch} from 'react-redux';
 import {Colors} from 'react-native-paper';
 
 const RegisterScreen = (props) => {
+  const [offset] = useState(new Animated.ValueXY({x: 0, y: 0}));
+  const [logo] = useState(new Animated.ValueXY({x: 135, y: 115}));
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
   const [formState, dispatchFormState] = useReducer(inputReducer, {
@@ -76,6 +79,40 @@ const RegisterScreen = (props) => {
     }
   };
 
+  useEffect(() => {
+    Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+    Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+    return () => {
+      Keyboard.removeListener('keyboardDidShow', keyboardDidShow);
+      Keyboard.removeListener('keyboardDidHide', keyboardDidHide);
+    };
+  }, [Keyboard]);
+
+  function keyboardDidShow() {
+    Animated.parallel([
+      Animated.timing(logo.x, {
+        toValue: 83,
+        duration: 100,
+      }),
+      Animated.timing(logo.y, {
+        toValue: 65,
+        duration: 100,
+      }),
+    ]).start();
+  }
+  function keyboardDidHide() {
+    Animated.parallel([
+      Animated.timing(logo.x, {
+        toValue: 135,
+        duration: 100,
+      }),
+      Animated.timing(logo.y, {
+        toValue: 115,
+        duration: 100,
+      }),
+    ]).start();
+  }
+
   if (isLoading) {
     return (
       <View style={styles.contentCenter}>
@@ -84,11 +121,21 @@ const RegisterScreen = (props) => {
   }
 
   return (
-    <TouchableWithoutFeedback style={styles.screen} onPress={() => Keyboard.dismiss()}>
+    <TouchableWithoutFeedback style={styles.screen}
+      onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
-        <Image style={styles.imagem} source={logoImg}/>
+        <Animated.Image style={{width: logo.x, height: logo.y}}
+          source={logoImg}/>
 
-        <View style={styles.inputContainer}>
+        <Animated.View style={[
+          styles.inputContainer,
+          {
+            transform: [
+              {translateY: offset.y},
+            ],
+          },
+        ]}
+        >
           <Input
             id="email"
             style={styles.input}
@@ -130,14 +177,14 @@ const RegisterScreen = (props) => {
           <View style={styles.errorContainer}>
             <Text style={styles.errorText}>{'Senhas não são iguais'}</Text>
           </View>}
-        </View>
+        </Animated.View>
 
         <View style={styles.actions}>
           <View style={{opacity:
             (formState.formIsValid && !isLoading) ? 1.0 : 0.5}}>
             <TouchableOpacity
               style={styles.button}
-              onPress={registerHandler}
+              onPress={registerHandler.bind(this)}
               disabled={!formState.formIsValid && !isLoading}
             >
               <Text style={styles.buttonText}>{'Registrar'}</Text>
