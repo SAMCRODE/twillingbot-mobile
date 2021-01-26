@@ -1,11 +1,13 @@
 import React, {useReducer, useCallback, useState, useEffect} from 'react';
-import {View,
+import {
+  View,
   Image,
   Text,
   Alert,
   ActivityIndicator,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  Animated,
 } from 'react-native';
 import styles from './styles';
 
@@ -82,13 +84,53 @@ const RegisterScreen = (props) => {
         <ActivityIndicator size="large" color={Colors.blue200} />
       </View>);
   }
+  const [offset] = useState(new Animated.ValueXY({x: 0, y: 0}));
+  const [logo] = useState(new Animated.ValueXY({x: 135, y: 115}));
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+  }, []);
+
+  function keyboardDidShow() {
+    Animated.parallel([
+      Animated.timing(logo.x, {
+        toValue: 83,
+        duration: 100,
+      }),
+      Animated.timing(logo.y, {
+        toValue: 65,
+        duration: 100,
+      }),
+    ]).start();
+  }
+  function keyboardDidHide() {
+    Animated.parallel([
+      Animated.timing(logo.x, {
+        toValue: 135,
+        duration: 100,
+      }),
+      Animated.timing(logo.y, {
+        toValue: 115,
+        duration: 100,
+      }),
+    ]).start();
+  }
 
   return (
     <TouchableWithoutFeedback style={styles.screen} onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
-        <Image style={styles.imagem} source={logoImg}/>
+        <Animated.Image style={{width: logo.x, height: logo.y}} source={logoImg}/>
 
-        <View style={styles.inputContainer}>
+        <Animated.View style={[
+          styles.inputContainer,
+          {
+            transform: [
+              {translateY: offset.y},
+            ],
+          },
+        ]}
+        >
           <Input
             id="email"
             style={styles.input}
@@ -130,7 +172,7 @@ const RegisterScreen = (props) => {
           <View style={styles.errorContainer}>
             <Text style={styles.errorText}>{'Senhas não são iguais'}</Text>
           </View>}
-        </View>
+        </Animated.View>
 
         <View style={styles.actions}>
           <View style={{opacity:
