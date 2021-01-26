@@ -5,6 +5,8 @@ import {
   Text,
   Alert,
   ActivityIndicator,
+  TouchableWithoutFeedback,
+  Keyboard
 } from 'react-native';
 import styles from './styles';
 
@@ -87,7 +89,7 @@ const NewPassScreen = (props) => {
 
   return (
 
-    <View style={styles.screen}>
+    <TouchableWithoutFeedback style={styles.screen} onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
         <Image style={styles.imagem} source={logoImg}/>
 
@@ -120,7 +122,7 @@ const NewPassScreen = (props) => {
 
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 

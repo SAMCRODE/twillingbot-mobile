@@ -4,6 +4,8 @@ import {View,
   Text,
   Alert,
   ActivityIndicator,
+  TouchableWithoutFeedback,
+  Keyboard
 } from 'react-native';
 import styles from './styles';
 
@@ -82,7 +84,7 @@ const RegisterScreen = (props) => {
   }
 
   return (
-    <View style={styles.screen}>
+    <TouchableWithoutFeedback style={styles.screen} onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
         <Image style={styles.imagem} source={logoImg}/>
 
@@ -153,7 +155,7 @@ const RegisterScreen = (props) => {
 
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 

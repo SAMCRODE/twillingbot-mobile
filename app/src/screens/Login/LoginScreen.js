@@ -1,10 +1,12 @@
 import React, { useReducer, useCallback, useState, useEffect } from 'react';
-import { View, 
-  Image, 
+import { View,
+  Image,
   Text,
   KeyboardAvoidingView,
   Alert,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableWithoutFeedback,
+  Keyboard
 } from 'react-native';
 import styles from './styles';
 
@@ -60,7 +62,7 @@ const LoginScreen = props => {
     action = authActions.signin(
       new User(0, formState.inputValues.email, formState.inputValues.password)
     );
-    
+
     setError(null);
     setIsLoading(true);
 
@@ -76,7 +78,7 @@ const LoginScreen = props => {
   };
 
   if(isLoading){
-    return ( 
+    return (
     <View style={styles.contentCenter}>
       <ActivityIndicator size="large" color={Colors.blue200} />
     </View>);
@@ -86,12 +88,12 @@ const LoginScreen = props => {
 
     <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style = {styles.screen}>
 
-      <View style={styles.screen}>
+      <TouchableWithoutFeedback style={styles.screen} onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
           <Image style={styles.imagem} source={logoImg}/>
 
           <View style={styles.inputContainer}>
-            <Input 
+            <Input
             id="email"
             style={styles.input}
             blurOnSubmit
@@ -104,7 +106,7 @@ const LoginScreen = props => {
             errorText="Coloque um email válido"
             />
             <Input
-            id="password" 
+            id="password"
             style={styles.input}
             blurOnSubmit
             autoCapitalize="none"
@@ -116,11 +118,11 @@ const LoginScreen = props => {
             required
             />
           </View>
-        
+
           <View style={styles.actions}>
             <View style={{opacity: (formState.formIsValid && !isLoading) ? 1.0 : 0.5}}>
-              <TouchableOpacity 
-                style={styles.button} 
+              <TouchableOpacity
+                style={styles.button}
                 disabled={!formState.formIsValid && !isLoading}
                 onPress={loginHandler}>
 
@@ -128,14 +130,14 @@ const LoginScreen = props => {
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] } 
+            <TouchableOpacity style={ [styles.button, {backgroundColor: '#657786'}] }
             onPress={() => {props.navigation.navigate({
                 routeName: 'Register' }); } }>
               <Text style={styles.buttonText}>{'Registrar'}</Text>
             </TouchableOpacity>
             <View style={styles.forgot}>
-              <Text 
-              style={{color: Colors.blue900, paddingTop: 10}} 
+              <Text
+              style={{color: Colors.blue900, paddingTop: 10}}
               onPress={() => {props.navigation.navigate({
                 routeName: 'Forgot' }); }}>
                 {'Esqueci a senha'}
@@ -144,7 +146,7 @@ const LoginScreen = props => {
 
           </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 };

@@ -2,10 +2,10 @@ import React, {useReducer, useCallback, useState, useEffect} from 'react';
 import {View,
   Image,
   Text,
-  KeyboardAvoidingView,
   Alert,
   ActivityIndicator,
   Keyboard,
+  TouchableWithoutFeedback
 } from 'react-native';
 import styles from './styles';
 
@@ -87,7 +87,7 @@ const ForgotPassScreen = (props) => {
 
   return (
 
-    <View style={styles.screen}>
+    <TouchableWithoutFeedback style={styles.screen} onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
         <Image style={styles.imagem} source={logoImg}/>
 
@@ -119,7 +119,7 @@ const ForgotPassScreen = (props) => {
 
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
