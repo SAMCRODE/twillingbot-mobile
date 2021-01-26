@@ -1,9 +1,10 @@
-import React, { useReducer, useEffect, useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+/* eslint-disable react/prop-types */
+import React, {useReducer, useEffect, useState} from 'react';
+import {StyleSheet, View, Text} from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import Colors from '../constants/Colors';
 
 const INPUT_CHANGE = 'INPUT_CHANGE';
@@ -28,18 +29,22 @@ const inputReducer = (state, action) => {
   }
 };
 
-const InputHandle = props => {
-  const handles = useSelector(state => state.user.handles);
-  const [filteredHandles, setFilteredHandles] = useState(handles);
+const InputHandle = (props) => {
+  const handles = useSelector((state) => state.user.handles);
+  const [filteredHandles, setFilteredHandles] = useState([]);
   const [selectedValue, setSelectedValue] = useState('');
 
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: props.initialValue ? props.initialValue : '',
     isValid: !!props.initiallyValid,
-    touched: false
+    touched: false,
   });
 
-  const { onInputChange, id } = props;
+  const {onInputChange, id} = props;
+
+  useEffect(() => {
+    setFilteredHandles(handles.slice(-2));
+  }, [handles]);
 
   useEffect(() => {
     // console.log('vou chamar ? ', inputState.touched)
@@ -48,7 +53,7 @@ const InputHandle = props => {
     }
   }, [inputState, onInputChange, id]);
 
-  const textChangeHandler = text => {
+  const textChangeHandler = (text) => {
     findHandle(text);
     let isValid = true;
     // console.log(text, 'eh o texto')
@@ -59,71 +64,65 @@ const InputHandle = props => {
       isValid = false;
     }
     // console.log(isValid,
-    dispatch({ type: INPUT_CHANGE, value: text, isValid: isValid });
+    dispatch({type: INPUT_CHANGE, value: text, isValid: isValid});
   };
 
   const lostFocusHandler = () => {
     // console.log('ON BLUR')
-    dispatch({ type: INPUT_BLUR });
+    dispatch({type: INPUT_BLUR});
   };
-
-  let icon;
-
-  if(props.icon){
-    // icon = <FontAwesome name={props.icon} style={styles.icon} size={15} color="grey" />
-  }
 
   const findHandle = (query) => {
     if (query) {
       const regex = new RegExp(`${query.trim()}`, 'i');
 
       setFilteredHandles(
-          handles.filter((handle) => handle.search(regex) >= 0)
+          handles.filter((handle) => handle.search(regex) >= 0).slice(-2),
       );
     } else {
-      setFilteredHandles(handles);
+      setFilteredHandles(handles.slice(-2));
     }
-  }
+  };
 
   return (
-      <View style={styles.inputContainer}>
-        <Autocomplete
-            {...props}
-            data={filteredHandles}
-            defaultValue={
-              selectedValue
-            }
-            keyExtractor={(item, i) => 'key' + i}
-            containerStyle={{ ...styles.input, ...props.style, ...styles.abc,}}
-            listContainerStyle={styles.suggest}
-            listStyle={styles.suggest}
-            placeholder={props.placeholder}
-            renderItem={({item}) => (
-                <TouchableOpacity
-                    style={styles.textComponent}
-                    onPress={() => {
-                      setSelectedValue(item);
-                      setFilteredHandles(handles);
-                      dispatch({ type: INPUT_CHANGE, value: item, isValid: true });
-                    }}
-                >
-                  <Text
-                      key={Math.random()}
-                      style={styles.textItem}>
-                    {item}
-                  </Text>
+    <View style={styles.inputContainer}>
+      <Autocomplete
+        {...props}
+        data={filteredHandles}
+        defaultValue={
+          selectedValue
+        }
+        keyExtractor={(item, i) => 'key' + i}
+        containerStyle={{...styles.input, ...props.style, ...styles.abc}}
+        listContainerStyle={styles.suggest}
+        listStyle={styles.suggest}
+        placeholder={props.placeholder}
+        renderItem={({item}) => (
+          <TouchableOpacity
+            style={styles.textComponent}
+            onPress={() => {
+              setSelectedValue(item);
+              setFilteredHandles(handles.slice(-2));
+              dispatch({type: INPUT_CHANGE, value: item, isValid: true});
+            }}
+          >
+            <Text
+              key={Math.random()}
+              style={styles.textItem}>
+              {item}
+            </Text>
 
-                </TouchableOpacity>
-            )}
-            onChangeText={textChangeHandler}
-            onEndEditing={lostFocusHandler}
-        />
-        {!!props.showError && !inputState.isValid && inputState.touched && (
-            <View style={styles.errorContainer}>
-              <Text style={styles.errorText}>{props.errorText}</Text>
-            </View>
+          </TouchableOpacity>
         )}
-      </View>);
+        onChangeText={textChangeHandler}
+        onEndEditing={lostFocusHandler}
+      />
+      {!!props.showError && !inputState.isValid && inputState.touched && (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>{props.errorText}</Text>
+        </View>
+      )}
+    </View>);
 };
 
 const styles = StyleSheet.create({
@@ -149,7 +148,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   },
   icon: {
-    paddingRight: 0
+    paddingRight: 0,
   },
   inputContainer: {
     backgroundColor: '#ffffff',
@@ -159,17 +158,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   errorContainer: {
-    marginVertical: 5
+    marginVertical: 5,
   },
   errorText: {
     color: 'red',
-    fontSize: 13
+    fontSize: 13,
   },
   textItem: {
     textAlign: 'center',
     fontSize: 18,
-    color: Colors.blueTwitter
-  }
+    color: Colors.blueTwitter,
+  },
 });
 
 export default InputHandle;
