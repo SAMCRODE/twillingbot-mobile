@@ -29,7 +29,7 @@ const ContributeScreen = (props) => {
   return (
     <View style={styles.container}>
       <Image
-        style={{width: '95%', height: '20%'}}
+        style={{width: '100%', height: '15%'}}
         source={logoImg}/>
       <Text>&quot;That which doesn&apos;t compile
                 makes you stronger&quot;</Text>
@@ -39,7 +39,7 @@ const ContributeScreen = (props) => {
           <Ionicons
             name="beer-outline"
             size={25} color={Colors.blueTwitter}/>
-          <Text style={{textAlign: 'center'}}>Achas que é capaz de
+          <Text style={{textAlign: 'justify'}}>Achas que é capaz de
           contribuir com essa caneca ? acesse nosso repositório, crie uma
           issue</Text>
         </View>
