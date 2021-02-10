@@ -1,4 +1,4 @@
-<a href="https://codeclimate.com/github/PS-ES-2020-1-TwitterBotDashboard/mobile/maintainability"><img src="https://api.codeclimate.com/v1/badges/a3b5505c1593c8562caf/maintainability" /></a>
+<a href="https://codeclimate.com/github/SAMCRODE/mobile/maintainability"><img src="https://api.codeclimate.com/v1/badges/2ccb0717a9954830d649/maintainability" /></a>
 
 # Twitter Dash App :penguin:
 This is an App to control bots on twitter. It was constructed with react-native and have the following functionalities:
