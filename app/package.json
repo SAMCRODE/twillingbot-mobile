@@ -10,7 +10,7 @@
     "@react-native-community/masked-view": "0.1.10",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-native": "~0.63.3",
+    "react-native": "~0.64.1",
     "react-native-autocomplete-input": "^4.2.0",
     "react-native-gesture-handler": "~1.7.0",
     "react-native-paper": "^4.2.0",
